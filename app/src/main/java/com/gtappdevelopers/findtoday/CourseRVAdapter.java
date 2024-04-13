@@ -48,7 +48,8 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //below line of code is use to set data to each item of our recycler view.
         CourseModal model = getCourseAt(position);
-        holder.valorDespTV.setText(model.getValorDesp());
+        holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
+       //holder.valorDespTV.setText(model.getValorDesp());
         holder.courseNameTV.setText(model.getCourseName());
         holder.courseDescTV.setText(model.getCourseDescription());
         holder.courseDurationTV.setText(model.getCourseDuration());

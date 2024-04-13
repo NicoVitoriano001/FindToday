@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //initializing our variable for our recycler view and fab.
         coursesRV = findViewById(R.id.idRVCourses);
-        FloatingActionButton fab = findViewById(R.id.idFABAdd);
+
+        FloatingActionButton fab = findViewById(R.id.idFABAdd);//adicionou o botao
 
         //adding on click listner for floating action button.
         fab.setOnClickListener(new View.OnClickListener() {
