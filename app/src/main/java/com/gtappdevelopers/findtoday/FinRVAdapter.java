@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseRVAdapter extends ListAdapter<FinModal, CourseRVAdapter.ViewHolder> {
+public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder> {
     //creating a variable for on item click listner.
     private OnItemClickListener listener;
 
     //creating a constructor class for our adapter class.
-    CourseRVAdapter() {
+    FinRVAdapter() {
         super(DIFF_CALLBACK);
     }
 

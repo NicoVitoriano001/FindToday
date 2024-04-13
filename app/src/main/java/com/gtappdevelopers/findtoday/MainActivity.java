@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         coursesRV.setLayoutManager(new LinearLayoutManager(this));
         coursesRV.setHasFixedSize(true);
         //initializing adapter for recycler view.
-        final CourseRVAdapter adapter = new CourseRVAdapter();
+        final FinRVAdapter adapter = new FinRVAdapter();
         //setting adapter class for recycler view.
         coursesRV.setAdapter(adapter);
         //passing a data from view modal.
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 //below line is use to attact this to recycler view.
                         attachToRecyclerView(coursesRV);
         //below line is use to set item click listner for our item of recycler view.
-        adapter.setOnItemClickListener(new CourseRVAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(FinModal model) {
                 //after clicking on item of recycler view
