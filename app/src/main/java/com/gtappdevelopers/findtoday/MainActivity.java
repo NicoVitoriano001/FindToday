@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //initializing our variable for our recycler view and fab.
         coursesRV = findViewById(R.id.idRVCourses);
-        FloatingActionButton fab = findViewById(R.id.idFABAdd);
+
+        FloatingActionButton fab = findViewById(R.id.idFABAdd);//adicionou o botao
 
         //adding on click listner for floating action button.
         fab.setOnClickListener(new View.OnClickListener() {
@@ -82,9 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, NewCourseActivity.class);
                 intent.putExtra(NewCourseActivity.EXTRA_ID, model.getId());
                 intent.putExtra(NewCourseActivity.EXTRA_VALOR_DESP, model.getValorDesp());
-                intent.putExtra(NewCourseActivity.EXTRA_COURSE_NAME, model.getCourseName());
-                intent.putExtra(NewCourseActivity.EXTRA_DESCRIPTION, model.getCourseDescription());
-                intent.putExtra(NewCourseActivity.EXTRA_DURATION, model.getCourseDuration());
+                intent.putExtra(NewCourseActivity.EXTRA_TIPO_DESP, model.getTipoDesp());
+                intent.putExtra(NewCourseActivity.EXTRA_NAT_DESP, model.getNatDesp());
+                intent.putExtra(NewCourseActivity.EXTRA_DESCR_DESP, model.getDespDescr());
+                intent.putExtra(NewCourseActivity.EXTRA_DURATION, model.getDataDesp());
                 //below line is to start a new activity and adding a edit course constant.
                 startActivityForResult(intent, EDIT_COURSE_REQUEST);
 
@@ -96,12 +98,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == ADD_COURSE_REQUEST && resultCode == RESULT_OK) {
-            int valorDEsp = data.getIntExtra(NewCourseActivity.EXTRA_VALOR_DESP,-1);
-            String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
-            String courseDescription = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
-            CourseModal model = new CourseModal(valorDEsp, courseName, courseDescription, courseDuration);
+            float  valorDEsp = data.getFloatExtra(NewCourseActivity.EXTRA_VALOR_DESP ,1.0f);//ESTAVA ,-1   FICAVA COMO VALOR
+            String tipoDesp = data.getStringExtra(NewCourseActivity.EXTRA_TIPO_DESP);
+            String despDescr = data.getStringExtra(NewCourseActivity.EXTRA_DESCR_DESP);
+            String natDesp = data.getStringExtra(NewCourseActivity.EXTRA_NAT_DESP);
+            String dataDesp = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
+            CourseModal model = new CourseModal(valorDEsp, tipoDesp, natDesp, despDescr, dataDesp);
             viewmodal.insert(model);
             Toast.makeText(this, "Course saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_COURSE_REQUEST && resultCode == RESULT_OK) {
@@ -110,11 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Course can't be updated", Toast.LENGTH_SHORT).show();
                 return;
             }
-            int valorDesp = data.getIntExtra(NewCourseActivity.EXTRA_VALOR_DESP,1);
-            String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
-            String courseDesc = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
-            CourseModal model = new CourseModal(valorDesp, courseName, courseDesc, courseDuration);
+            float valorDesp = data.getFloatExtra(NewCourseActivity.EXTRA_VALOR_DESP,1.0f);
+            String tipoDesp = data.getStringExtra(NewCourseActivity.EXTRA_TIPO_DESP);
+            String natDesp = data.getStringExtra(NewCourseActivity.EXTRA_NAT_DESP);
+            String courseDesc = data.getStringExtra(NewCourseActivity.EXTRA_DESCR_DESP);
+            String dataDesp = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
+            CourseModal model = new CourseModal(valorDesp, tipoDesp, natDesp, courseDesc, dataDesp);
             model.setId(id);
             viewmodal.update(model);
             Toast.makeText(this, "Course updated", Toast.LENGTH_SHORT).show();

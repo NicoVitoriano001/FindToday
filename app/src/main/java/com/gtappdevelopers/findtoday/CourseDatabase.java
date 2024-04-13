@@ -12,7 +12,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 public abstract class CourseDatabase extends RoomDatabase {
     //below line is to create instance for our databse class.
     private static CourseDatabase instance;
-
     //below line is to create abstract variable for dao.
     public abstract Dao Dao();
 
