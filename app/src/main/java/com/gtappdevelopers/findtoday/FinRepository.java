@@ -12,7 +12,7 @@ public class FinRepository {
     //creating a constructor for our variables and passing the variables to it.
     public FinRepository(Application application) {
         FinDatabase database = FinDatabase.getInstance(application);
-        dao = database.Dao();
+        dao = database.dao();
         allCourses = dao.getAllCourses();
     }
 

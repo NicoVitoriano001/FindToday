@@ -28,7 +28,6 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
         public boolean areContentsTheSame(FinModal oldItem, FinModal newItem) {
             //below line is to check the course name, description and course duration.
             return  oldItem.getValorDesp() == newItem.getValorDesp() &&
-                    //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
                     oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
                     oldItem.getNatDesp().equals(newItem.getNatDesp()) &&
                     oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
@@ -54,7 +53,8 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
         holder.tipoDespTV.setText(model.getTipoDesp());
         holder.natDespTV.setText(model.getNatDesp());
         holder.courseDescTV.setText(model.getDespDescr());
-        holder.dataDespTV.setText(model.getDataDesp());
+        holder.dataDespTV.setText(model.getDataDesp().toString()); // Convert LocalDateTime to String
+        //holder.dataDespTV.setText(model.getDataDesp());
     }
 
     //creating a method to get course modal for a specific position.

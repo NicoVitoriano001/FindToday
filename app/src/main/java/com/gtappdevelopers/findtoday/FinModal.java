@@ -1,7 +1,9 @@
 package com.gtappdevelopers.findtoday;
+import java.time.LocalDateTime;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 
 //below line is for setting table name.
 @Entity(tableName = "course_table")//nome tabela
@@ -16,16 +18,15 @@ public class FinModal {
     //below line is use for course description.
     private String tipoDesp;
     //below line is use for course description.
-
     private String natDesp;
     //below line is use for course description.
     private String despDescr;
     //below line is use for course duration.
-    private String dataDesp;
+    private LocalDateTime dataDesp;
 
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
-    public FinModal(float valorDesp, String natDesp, String tipoDesp, String despDescr, String dataDesp) {
+    public FinModal(float valorDesp, String natDesp, String tipoDesp, String despDescr, LocalDateTime dataDesp) {
         this.valorDesp = valorDesp;
         this.tipoDesp = tipoDesp;
         this.natDesp = natDesp;
@@ -61,10 +62,10 @@ public class FinModal {
     public String getDespDescr() { return despDescr; }
     public void setDespDescr(String despDescr) { this.despDescr = despDescr; }
 
-    public String getDataDesp() {
+    public LocalDateTime getDataDesp() {
         return dataDesp;
     }
-    public void setDataDesp(String dataDesp) {
+    public void setDataDesp(LocalDateTime dataDesp) {
         this.dataDesp = dataDesp;
     }
 }

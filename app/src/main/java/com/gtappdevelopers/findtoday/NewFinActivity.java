@@ -61,7 +61,6 @@ public class NewFinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //getting text value from edittext and validating if the text fields are empty or not.
                 float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
-             // float valorDesp = valorDespEdt.getText().toString();
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String natDesp = natDespEdt.getText().toString();
 

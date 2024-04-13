@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,9 +107,13 @@ public class MainActivity extends AppCompatActivity {
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
             String natDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
-            String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
+            String dataDespString = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime dataDesp = LocalDateTime.parse(dataDespString, formatter);
+
             FinModal model = new FinModal(valorDEsp, tipoDesp, natDesp, despDescr, dataDesp);
             viewmodal.insert(model);
+
             Toast.makeText(this, "Course saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_FIN_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1);
@@ -118,9 +125,13 @@ public class MainActivity extends AppCompatActivity {
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String natDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
             String courseDesc = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
-            String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
+            String dataDespString = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime dataDesp = LocalDateTime.parse(dataDespString, formatter);
+
             FinModal model = new FinModal(valorDesp, tipoDesp, natDesp, courseDesc, dataDesp);
             model.setId(id);
+
             viewmodal.update(model);
             Toast.makeText(this, "Course updated", Toast.LENGTH_SHORT).show();
         } else {
