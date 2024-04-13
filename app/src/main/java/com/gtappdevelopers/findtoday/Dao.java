@@ -13,15 +13,15 @@ import java.util.List;
 public interface Dao {
     //below method is use to add data to database.
     @Insert
-    void insert(CourseModal model);
+    void insert(FinModal model);
 
     //below method is use to update the data in our database.
     @Update
-    void update(CourseModal model);
+    void update(FinModal model);
 
     //below line is use to delete a specific course in our database.
     @Delete
-    void delete(CourseModal model);
+    void delete(FinModal model);
 
     //on below line we are making query to delete all courses from our databse.
     @Query("DELETE FROM course_table")
@@ -30,6 +30,6 @@ public interface Dao {
     //beloe line is to read all the courses from our database.
     //in this we are ordering our courses in ascending order with our course name.
     @Query("SELECT * FROM course_table ORDER BY tipoDesp ASC")
-    LiveData<List<CourseModal>> getAllCourses();
+    LiveData<List<FinModal>> getAllCourses();
 
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.ViewHolder> {
+public class CourseRVAdapter extends ListAdapter<FinModal, CourseRVAdapter.ViewHolder> {
     //creating a variable for on item click listner.
     private OnItemClickListener listener;
 
@@ -18,14 +18,14 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     }
 
     //creating a call back for item of recycler view.
-    private static final DiffUtil.ItemCallback<CourseModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<CourseModal>() {
+    private static final DiffUtil.ItemCallback<FinModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<FinModal>() {
         @Override
-        public boolean areItemsTheSame(CourseModal oldItem, CourseModal newItem) {
+        public boolean areItemsTheSame(FinModal oldItem, FinModal newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(CourseModal oldItem, CourseModal newItem) {
+        public boolean areContentsTheSame(FinModal oldItem, FinModal newItem) {
             //below line is to check the course name, description and course duration.
             return  oldItem.getValorDesp() == newItem.getValorDesp() &&
                     //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
@@ -41,14 +41,14 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //below line is use to inflate our layout file for each item of our recycler view.
         View item = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.course_rv_item, parent, false);
+                .inflate(R.layout.fin_rv_item, parent, false);
         return new ViewHolder(item);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //below line of code is use to set data to each item of our recycler view.
-        CourseModal model = getCourseAt(position);
+        FinModal model = getCourseAt(position);
         holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
        //holder.valorDespTV.setText(model.getValorDesp());
         holder.tipoDespTV.setText(model.getTipoDesp());
@@ -58,7 +58,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     }
 
     //creating a method to get course modal for a specific position.
-    public CourseModal getCourseAt(int position) {
+    public FinModal getCourseAt(int position) {
         return getItem(position);
     }
 
@@ -90,7 +90,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(CourseModal model);
+        void onItemClick(FinModal model);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

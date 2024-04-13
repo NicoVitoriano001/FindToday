@@ -4,30 +4,30 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
-public class CourseRepository {
+public class FinRepository {
     //below line is the create a variable for dao and list for all courses.
     private Dao dao;
-    private LiveData<List<CourseModal>> allCourses;
+    private LiveData<List<FinModal>> allCourses;
 
     //creating a constructor for our variables and passing the variables to it.
-    public CourseRepository(Application application) {
-        CourseDatabase database = CourseDatabase.getInstance(application);
+    public FinRepository(Application application) {
+        FinDatabase database = FinDatabase.getInstance(application);
         dao = database.Dao();
         allCourses = dao.getAllCourses();
     }
 
     //creating a method to insert the data to our database.
-    public void insert(CourseModal model) {
+    public void insert(FinModal model) {
         new InsertCourseAsyncTask(dao).execute(model);
     }
 
     //creating a method to update data in database.
-    public void update(CourseModal model) {
+    public void update(FinModal model) {
         new UpdateCourseAsyncTask(dao).execute(model);
     }
 
     //creating a method to delete the data in our database.
-    public void delete(CourseModal model) {
+    public void delete(FinModal model) {
         new DeleteCourseAsyncTask(dao).execute(model);
     }
 
@@ -37,12 +37,12 @@ public class CourseRepository {
     }
 
     //below method is to read all the courses.
-    public LiveData<List<CourseModal>> getAllCourses() {
+    public LiveData<List<FinModal>> getAllCourses() {
         return allCourses;
     }
 
     //we are creating a async task method to insert new course.
-    private static class InsertCourseAsyncTask extends AsyncTask<CourseModal, Void, Void> {
+    private static class InsertCourseAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
         private InsertCourseAsyncTask(Dao dao) {
@@ -50,7 +50,7 @@ public class CourseRepository {
         }
 
         @Override
-        protected Void doInBackground(CourseModal... model) {
+        protected Void doInBackground(FinModal... model) {
             //below line is use to insert our modal in dao.
             dao.insert(model[0]);
             return null;
@@ -58,7 +58,7 @@ public class CourseRepository {
     }
 
     //we are creating a async task method to update our course.
-    private static class UpdateCourseAsyncTask extends AsyncTask<CourseModal, Void, Void> {
+    private static class UpdateCourseAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
         private UpdateCourseAsyncTask(Dao dao) {
@@ -66,7 +66,7 @@ public class CourseRepository {
         }
 
         @Override
-        protected Void doInBackground(CourseModal... models) {
+        protected Void doInBackground(FinModal... models) {
             //below line is use to update our modal in dao.
             dao.update(models[0]);
             return null;
@@ -74,7 +74,7 @@ public class CourseRepository {
     }
 
     //we are creating a async task method to delete course.
-    private static class DeleteCourseAsyncTask extends AsyncTask<CourseModal, Void, Void> {
+    private static class DeleteCourseAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
         private DeleteCourseAsyncTask(Dao dao) {
@@ -82,7 +82,7 @@ public class CourseRepository {
         }
 
         @Override
-        protected Void doInBackground(CourseModal... models) {
+        protected Void doInBackground(FinModal... models) {
             //below line is use to delete our course modal in dao.
             dao.delete(models[0]);
             return null;

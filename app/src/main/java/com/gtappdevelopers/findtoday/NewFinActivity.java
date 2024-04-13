@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class NewCourseActivity extends AppCompatActivity {
+public class NewFinActivity extends AppCompatActivity {
 
     //creating a variables for our button and edittext.
     private EditText valorDespEdt, tipoDespEdt, natDespEdt, courseDescEdt, dataDespEdt;
@@ -37,7 +37,7 @@ public class NewCourseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_course);
+        setContentView(R.layout.activity_new_fin);
         //initializing our variables for each view.
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
         tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
@@ -68,7 +68,7 @@ public class NewCourseActivity extends AppCompatActivity {
                 String courseDesc = courseDescEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
                 if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || courseDesc.isEmpty() || dataDesp.isEmpty()) {
-                    Toast.makeText(NewCourseActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewFinActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //calling a method to save our course.
