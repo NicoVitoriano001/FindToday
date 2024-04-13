@@ -52,7 +52,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
        //holder.valorDespTV.setText(model.getValorDesp());
         holder.tipoDespTV.setText(model.getTipoDesp());
         holder.natDespTV.setText(model.getNatDesp());
-        holder.courseDescTV.setText(model.getDespDescr());
+        holder.despDescrTV.setText(model.getDespDescr());
         holder.dataDespTV.setText(model.getDataDesp().toString()); // Convert LocalDateTime to String
         //holder.dataDespTV.setText(model.getDataDesp());
     }
@@ -64,7 +64,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //view holder class to create a variable for each view.
-        TextView valorDespTV, tipoDespTV, natDespTV, courseDescTV, dataDespTV;
+        TextView valorDespTV, tipoDespTV, natDespTV, despDescrTV, dataDespTV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +72,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
             valorDespTV = itemView.findViewById(R.id.idTVValorDesp);
             tipoDespTV = itemView.findViewById(R.id.idTVTipoDesp);
             natDespTV = itemView.findViewById(R.id.idTVNatDesp);
-            courseDescTV = itemView.findViewById(R.id.idTVDespDescr);
+            despDescrTV = itemView.findViewById(R.id.idTVDespDescr);
             dataDespTV = itemView.findViewById(R.id.idTVdataDesp);
             //adding on click listner for each item of recycler view.
             itemView.setOnClickListener(new View.OnClickListener() {

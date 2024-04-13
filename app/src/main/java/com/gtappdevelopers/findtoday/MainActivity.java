@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 //on recycler view item swiped then we are deleting the item of our recycler view.
                 viewmodal.delete(adapter.getCourseAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(MainActivity.this, "Course deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Course deleted", Toast.LENGTH_LONG).show();
             }
         }).
                 //below line is use to attact this to recycler view.
@@ -114,28 +114,28 @@ public class MainActivity extends AppCompatActivity {
             FinModal model = new FinModal(valorDEsp, tipoDesp, natDesp, despDescr, dataDesp);
             viewmodal.insert(model);
 
-            Toast.makeText(this, "Course saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registro salvo.", Toast.LENGTH_LONG).show();
         } else if (requestCode == EDIT_FIN_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1);
             if (id == -1) {
-                Toast.makeText(this, "Course can't be updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Registro não foi atualizado.", Toast.LENGTH_LONG).show();
                 return;
             }
             float valorDesp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP,1.0f);
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String natDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
-            String courseDesc = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
+            String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
             String dataDespString = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime dataDesp = LocalDateTime.parse(dataDespString, formatter);
 
-            FinModal model = new FinModal(valorDesp, tipoDesp, natDesp, courseDesc, dataDesp);
+            FinModal model = new FinModal(valorDesp, tipoDesp, natDesp, despDescr, dataDesp);
             model.setId(id);
 
             viewmodal.update(model);
-            Toast.makeText(this, "Course updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registro a", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Course not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Course not saved", Toast.LENGTH_LONG).show();
         }
 
     }

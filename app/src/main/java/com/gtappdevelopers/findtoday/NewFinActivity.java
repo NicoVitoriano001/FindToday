@@ -9,92 +9,82 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class NewFinActivity extends AppCompatActivity {
 
-    //creating a variables for our button and edittext.
+    // Variáveis para os componentes da tela
     private EditText valorDespEdt, tipoDespEdt, natDespEdt, despDescrEdt, dataDespEdt;
     private Button finBtn;
 
-    //creating a constant string variable for our course name, description and duration.
-    public static final String EXTRA_ID =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID";
-
-    public static final String EXTRA_VALOR_DESP =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
-
-    public static final String EXTRA_TIPO_DESP =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_TIPO_DESP";
-
-    public static final String EXTRA_NAT_DESP =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_NAT_DESP";
-
-    public static final String EXTRA_DESCR_DESP =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DESCRIPTION";
-    public static final String EXTRA_DURATION =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DURATION";
-
+    // Constantes para passar dados entre atividades
+    public static final String EXTRA_ID = "com.gtappdevelopers.findtoday.EXTRA_ID";
+    public static final String EXTRA_VALOR_DESP = "com.gtappdevelopers.findtoday.EXTRA_VALOR_DESP";
+    public static final String EXTRA_TIPO_DESP = "com.gtappdevelopers.findtoday.EXTRA_TIPO_DESP";
+    public static final String EXTRA_NAT_DESP = "com.gtappdevelopers.findtoday.EXTRA_NAT_DESP";
+    public static final String EXTRA_DESCR_DESP = "com.gtappdevelopers.findtoday.EXTRA_DESCR_DESP";
+    public static final String EXTRA_DURATION = "com.gtappdevelopers.findtoday.EXTRA_DURATION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_fin);
-        //initializing our variables for each view.
+
+        // Inicializando os componentes da tela
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
         tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
         natDespEdt = findViewById(R.id.idEdtNatDesp);
         despDescrEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
         finBtn = findViewById(R.id.idBtnSaveCourse);
-        //below line is to get intent as we are getting data via an intent.
-        Intent intent = getIntent();
-        if (intent.hasExtra(EXTRA_ID)) {
-            //if we get id for our data then we are setting values to our edit text fields.
-            valorDespEdt.setText(intent.getStringExtra(String.valueOf(EXTRA_VALOR_DESP)));
-            tipoDespEdt.setText(intent.getStringExtra(EXTRA_TIPO_DESP));
-            natDespEdt.setText(intent.getStringExtra(EXTRA_NAT_DESP));
-            despDescrEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
-            dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
-        }
-        //adding on click listner for our save button.
+
+        // Preenchendo o EditText com a data e hora atual formatada
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = currentDateTime.format(formatter);
+        dataDespEdt.setText(formattedDateTime);
+
+        // Configurando o botão de salvar
         finBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getting text value from edittext and validating if the text fields are empty or not.
+                // Obtendo os valores dos EditTexts
                 float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String natDesp = natDespEdt.getText().toString();
-
-                String courseDesc = despDescrEdt.getText().toString();
+                String despDescr = despDescrEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
-                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || courseDesc.isEmpty() || dataDesp.isEmpty()) {
-                    Toast.makeText(NewFinActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
+
+                // Verificando se os campos estão preenchidos
+                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
+                    Toast.makeText(NewFinActivity.this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                //calling a method to save our course.
-                saveCourse(valorDesp, tipoDesp, natDesp, courseDesc, dataDesp);
+
+                // Salvando o curso
+                saveCourse(valorDesp, tipoDesp, natDesp, despDescr, dataDesp);
             }
         });
-
     }
 
     private void saveCourse(float valorDesp, String tipoDesp, String natDesp, String despDescr, String dataDesp) {
-        //inside this method we are passing all the data via an intent.
+        // Criando uma intent para retornar os dados
         Intent data = new Intent();
-        //in below line we are passing all our course detail.
-        data.putExtra(String.valueOf(EXTRA_VALOR_DESP), valorDesp);
+        data.putExtra(EXTRA_VALOR_DESP, valorDesp);
         data.putExtra(EXTRA_TIPO_DESP, tipoDesp);
         data.putExtra(EXTRA_NAT_DESP, natDesp);
         data.putExtra(EXTRA_DESCR_DESP, despDescr);
         data.putExtra(EXTRA_DURATION, dataDesp);
+
+        // Verificando se existe um ID
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {
-            //in below line we are passing our id.
             data.putExtra(EXTRA_ID, id);
         }
-        //at last we are setting result as data.
-        setResult(RESULT_OK, data);
-        //displaying a toast message after adding the data
-        Toast.makeText(this, "Course has been saved to Room Database. ", Toast.LENGTH_SHORT).show();
-    }
 
+        // Definindo o resultado como OK e retornando os dados
+        setResult(RESULT_OK, data);
+        finish();
+    }
 }

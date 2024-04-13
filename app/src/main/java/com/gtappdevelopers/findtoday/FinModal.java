@@ -1,6 +1,5 @@
 package com.gtappdevelopers.findtoday;
 import java.time.LocalDateTime;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
