@@ -21,6 +21,8 @@ public class NewCourseActivity extends AppCompatActivity {
 
     public static final String EXTRA_VALOR_DESP =
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
+
+
     public static final String EXTRA_COURSE_NAME =
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_NAME";
     public static final String EXTRA_DESCRIPTION =
@@ -34,7 +36,7 @@ public class NewCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_course);
         //initializing our variables for each view.
-        valorDespEdt = findViewById(R.id.idEdtCourseName);
+        valorDespEdt = findViewById(R.id.idEdtValorDesp);
         courseNameEdt = findViewById(R.id.idEdtCourseName);
         courseDescEdt = findViewById(R.id.idEdtCourseDescription);
         courseDurationEdt = findViewById(R.id.idEdtCourseDuration);
@@ -43,7 +45,7 @@ public class NewCourseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
             //if we get id for our data then we are setting values to our edit text fields.
-            valorDespEdt.setText(intent.getStringExtra(EXTRA_VALOR_DESP));
+            valorDespEdt.setText(intent.getStringExtra(String.valueOf(EXTRA_VALOR_DESP)));
             courseNameEdt.setText(intent.getStringExtra(EXTRA_COURSE_NAME));
             courseDescEdt.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
             courseDurationEdt.setText(intent.getStringExtra(EXTRA_DURATION));
@@ -53,11 +55,12 @@ public class NewCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //getting text value from edittext and validating if the text fields are empty or not.
-                String valorDesp = valorDespEdt.getText().toString();
+                float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
+             // float valorDesp = valorDespEdt.getText().toString();
                 String courseName = courseNameEdt.getText().toString();
                 String courseDesc = courseDescEdt.getText().toString();
                 String courseDuration = courseDurationEdt.getText().toString();
-                if (valorDesp.isEmpty() || courseName.isEmpty() || courseDesc.isEmpty() || courseDuration.isEmpty()) {
+                if (String.valueOf(valorDesp).isEmpty() || courseName.isEmpty() || courseDesc.isEmpty() || courseDuration.isEmpty()) {
                     Toast.makeText(NewCourseActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -68,11 +71,11 @@ public class NewCourseActivity extends AppCompatActivity {
 
     }
 
-    private void saveCourse(String valorDesp, String courseName, String courseDescription, String courseDuration) {
+    private void saveCourse(float valorDesp, String courseName, String courseDescription, String courseDuration) {
         //inside this method we are passing all the data via an intent.
         Intent data = new Intent();
         //in below line we are passing all our course detail.
-        data.putExtra(EXTRA_VALOR_DESP, valorDesp);
+        data.putExtra(String.valueOf(EXTRA_VALOR_DESP), valorDesp);
         data.putExtra(EXTRA_COURSE_NAME, courseName);
         data.putExtra(EXTRA_DESCRIPTION, courseDescription);
         data.putExtra(EXTRA_DURATION, courseDuration);
