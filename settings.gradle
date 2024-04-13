@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "GFG Room Database"
+rootProject.name = "FindToday"
