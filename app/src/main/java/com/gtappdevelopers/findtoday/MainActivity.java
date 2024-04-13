@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, NewCourseActivity.class);
                 intent.putExtra(NewCourseActivity.EXTRA_ID, model.getId());
                 intent.putExtra(NewCourseActivity.EXTRA_VALOR_DESP, model.getValorDesp());
-                intent.putExtra(NewCourseActivity.EXTRA_COURSE_NAME, model.getCourseName());
-                intent.putExtra(NewCourseActivity.EXTRA_DESCRIPTION, model.getCourseDescription());
-                intent.putExtra(NewCourseActivity.EXTRA_DURATION, model.getCourseDuration());
+                intent.putExtra(NewCourseActivity.EXTRA_COURSE_NAME, model.getTipoDesp());
+                intent.putExtra(NewCourseActivity.EXTRA_DESCRIPTION, model.getDespDescr());
+                intent.putExtra(NewCourseActivity.EXTRA_DURATION, model.getDataDesp());
                 //below line is to start a new activity and adding a edit course constant.
                 startActivityForResult(intent, EDIT_COURSE_REQUEST);
 
@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_COURSE_REQUEST && resultCode == RESULT_OK) {
             float  valorDEsp = data.getFloatExtra(NewCourseActivity.EXTRA_VALOR_DESP ,1.0f);//ESTAVA ,-1   FICAVA COMO VALOR
-            String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
-            String courseDescription = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
-            CourseModal model = new CourseModal(valorDEsp, courseName, courseDescription, courseDuration);
+            String tipoDesp = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
+            String despDescr = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
+            String dataDesp = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
+            CourseModal model = new CourseModal(valorDEsp, tipoDesp, despDescr, dataDesp);
             viewmodal.insert(model);
             Toast.makeText(this, "Course saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_COURSE_REQUEST && resultCode == RESULT_OK) {
@@ -112,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             float valorDesp = data.getFloatExtra(NewCourseActivity.EXTRA_VALOR_DESP,1.0f);
-            String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
+            String tipoDesp = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
             String courseDesc = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
-            CourseModal model = new CourseModal(valorDesp, courseName, courseDesc, courseDuration);
+            String dataDesp = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
+            CourseModal model = new CourseModal(valorDesp, tipoDesp, courseDesc, dataDesp);
             model.setId(id);
             viewmodal.update(model);
             Toast.makeText(this, "Course updated", Toast.LENGTH_SHORT).show();

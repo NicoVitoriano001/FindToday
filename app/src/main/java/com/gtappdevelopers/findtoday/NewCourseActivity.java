@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class NewCourseActivity extends AppCompatActivity {
 
     //creating a variables for our button and edittext.
-    private EditText valorDespEdt, courseNameEdt, courseDescEdt, courseDurationEdt;
+    private EditText valorDespEdt, tipoDespEdt, courseDescEdt, dataDespEdt;
     private Button courseBtn;
 
     //creating a constant string variable for our course name, description and duration.
@@ -37,18 +37,18 @@ public class NewCourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_course);
         //initializing our variables for each view.
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
-        courseNameEdt = findViewById(R.id.idEdtCourseName);
-        courseDescEdt = findViewById(R.id.idEdtCourseDescription);
-        courseDurationEdt = findViewById(R.id.idEdtCourseDuration);
+        tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
+        courseDescEdt = findViewById(R.id.idEdtDespDescr);
+        dataDespEdt = findViewById(R.id.idEdtDataDesp);
         courseBtn = findViewById(R.id.idBtnSaveCourse);
         //below line is to get intent as we are getting data via an intent.
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
             //if we get id for our data then we are setting values to our edit text fields.
             valorDespEdt.setText(intent.getStringExtra(String.valueOf(EXTRA_VALOR_DESP)));
-            courseNameEdt.setText(intent.getStringExtra(EXTRA_COURSE_NAME));
+            tipoDespEdt.setText(intent.getStringExtra(EXTRA_COURSE_NAME));
             courseDescEdt.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
-            courseDurationEdt.setText(intent.getStringExtra(EXTRA_DURATION));
+            dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
         //adding on click listner for our save button.
         courseBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,28 +57,28 @@ public class NewCourseActivity extends AppCompatActivity {
                 //getting text value from edittext and validating if the text fields are empty or not.
                 float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
              // float valorDesp = valorDespEdt.getText().toString();
-                String courseName = courseNameEdt.getText().toString();
+                String tipoDesp = tipoDespEdt.getText().toString();
                 String courseDesc = courseDescEdt.getText().toString();
-                String courseDuration = courseDurationEdt.getText().toString();
-                if (String.valueOf(valorDesp).isEmpty() || courseName.isEmpty() || courseDesc.isEmpty() || courseDuration.isEmpty()) {
+                String dataDesp = dataDespEdt.getText().toString();
+                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || courseDesc.isEmpty() || dataDesp.isEmpty()) {
                     Toast.makeText(NewCourseActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //calling a method to save our course.
-                saveCourse(valorDesp, courseName, courseDesc, courseDuration);
+                saveCourse(valorDesp, tipoDesp, courseDesc, dataDesp);
             }
         });
 
     }
 
-    private void saveCourse(float valorDesp, String courseName, String courseDescription, String courseDuration) {
+    private void saveCourse(float valorDesp, String tipoDesp, String despDescr, String dataDesp) {
         //inside this method we are passing all the data via an intent.
         Intent data = new Intent();
         //in below line we are passing all our course detail.
         data.putExtra(String.valueOf(EXTRA_VALOR_DESP), valorDesp);
-        data.putExtra(EXTRA_COURSE_NAME, courseName);
-        data.putExtra(EXTRA_DESCRIPTION, courseDescription);
-        data.putExtra(EXTRA_DURATION, courseDuration);
+        data.putExtra(EXTRA_COURSE_NAME, tipoDesp);
+        data.putExtra(EXTRA_DESCRIPTION, despDescr);
+        data.putExtra(EXTRA_DURATION, dataDesp);
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {
             //in below line we are passing our id.

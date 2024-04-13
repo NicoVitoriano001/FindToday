@@ -29,9 +29,9 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
             //below line is to check the course name, description and course duration.
             return  oldItem.getValorDesp() == newItem.getValorDesp() &&
                     //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
-                    oldItem.getCourseName().equals(newItem.getCourseName()) &&
-                    oldItem.getCourseDescription().equals(newItem.getCourseDescription()) &&
-                    oldItem.getCourseDuration().equals(newItem.getCourseDuration());
+                    oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
+                    oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
+                    oldItem.getDataDesp().equals(newItem.getDataDesp());
         }
     };
 
@@ -50,9 +50,9 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
         CourseModal model = getCourseAt(position);
         holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
        //holder.valorDespTV.setText(model.getValorDesp());
-        holder.courseNameTV.setText(model.getCourseName());
-        holder.courseDescTV.setText(model.getCourseDescription());
-        holder.courseDurationTV.setText(model.getCourseDuration());
+        holder.tipoDespTV.setText(model.getTipoDesp());
+        holder.courseDescTV.setText(model.getDespDescr());
+        holder.dataDespTV.setText(model.getDataDesp());
     }
 
     //creating a method to get course modal for a specific position.
@@ -62,15 +62,15 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //view holder class to create a variable for each view.
-        TextView valorDespTV, courseNameTV, courseDescTV, courseDurationTV;
+        TextView valorDespTV, tipoDespTV, courseDescTV, dataDespTV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             //initializing each view of our recycler view.
             valorDespTV = itemView.findViewById(R.id.idTVValorDesp);
-            courseNameTV = itemView.findViewById(R.id.idTVCourseName);
-            courseDescTV = itemView.findViewById(R.id.idTVCourseDescription);
-            courseDurationTV = itemView.findViewById(R.id.idTVCourseDuration);
+            tipoDespTV = itemView.findViewById(R.id.idTVTipoDesp);
+            courseDescTV = itemView.findViewById(R.id.idTVDespDescr);
+            dataDespTV = itemView.findViewById(R.id.idTVDataDesp);
             //adding on click listner for each item of recycler view.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
