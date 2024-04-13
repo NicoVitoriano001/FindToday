@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Enter Valor Desp" />
+        android:hint="Valor Desp" />
 
     <!--edit text for our course name-->
     <EditText
@@ -23,7 +23,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Enter Course Name" />
+        android:hint="Tipo Desp" />
+
+    <EditText
+        android:id="@+id/idEdtNatDesp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Natureza Desp" />
+
 
     <!--edit text for our course description-->
     <EditText
@@ -31,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Enter Course Description" />
+        android:hint="Descrição Desp" />
 
     <!--edit text for course description-->
     <EditText
@@ -39,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Course Duration" />
+        android:hint="Data Desp" />
 
     <!--button for saving data to room database-->
     <Button
@@ -48,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="5dp"
-        android:text="Save your course"
+        android:text="Save your Data"
         android:textAllCaps="false" />
 
 

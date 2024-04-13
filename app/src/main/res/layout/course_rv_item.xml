@@ -30,19 +30,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Course Name"
+            android:text="Tipo Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <!--text view for our course duration-->
         <TextView
-            android:id="@+id/idTVdataDesp"
+            android:id="@+id/idTVNatDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Course Duration"
+            android:text="Natureza Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
+
+
 
         <!--text view for our course description-->
         <TextView
@@ -51,6 +52,15 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Course Description"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/idTVdataDesp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Data Despesa"
             android:textColor="@color/black"
             android:textSize="15sp" />
     </LinearLayout>

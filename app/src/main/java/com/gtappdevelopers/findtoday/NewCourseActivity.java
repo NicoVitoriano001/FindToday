@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class NewCourseActivity extends AppCompatActivity {
 
     //creating a variables for our button and edittext.
-    private EditText valorDespEdt, tipoDespEdt, courseDescEdt, dataDespEdt;
+    private EditText valorDespEdt, tipoDespEdt, natDespEdt, courseDescEdt, dataDespEdt;
     private Button courseBtn;
 
     //creating a constant string variable for our course name, description and duration.
@@ -22,10 +22,13 @@ public class NewCourseActivity extends AppCompatActivity {
     public static final String EXTRA_VALOR_DESP =
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
 
+    public static final String EXTRA_TIPO_DESP =
+            "com.gtappdevelopers.gfgroomdatabase.EXTRA_TIPO_DESP";
 
-    public static final String EXTRA_COURSE_NAME =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_NAME";
-    public static final String EXTRA_DESCRIPTION =
+    public static final String EXTRA_NAT_DESP =
+            "com.gtappdevelopers.gfgroomdatabase.EXTRA_NAT_DESP";
+
+    public static final String EXTRA_DESCR_DESP =
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DESCRIPTION";
     public static final String EXTRA_DURATION =
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DURATION";
@@ -38,6 +41,7 @@ public class NewCourseActivity extends AppCompatActivity {
         //initializing our variables for each view.
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
         tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
+        natDespEdt = findViewById(R.id.idEdtNatDesp);
         courseDescEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
         courseBtn = findViewById(R.id.idBtnSaveCourse);
@@ -46,8 +50,9 @@ public class NewCourseActivity extends AppCompatActivity {
         if (intent.hasExtra(EXTRA_ID)) {
             //if we get id for our data then we are setting values to our edit text fields.
             valorDespEdt.setText(intent.getStringExtra(String.valueOf(EXTRA_VALOR_DESP)));
-            tipoDespEdt.setText(intent.getStringExtra(EXTRA_COURSE_NAME));
-            courseDescEdt.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            tipoDespEdt.setText(intent.getStringExtra(EXTRA_TIPO_DESP));
+            natDespEdt.setText(intent.getStringExtra(EXTRA_NAT_DESP));
+            courseDescEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
             dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
         //adding on click listner for our save button.
@@ -58,6 +63,8 @@ public class NewCourseActivity extends AppCompatActivity {
                 float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
              // float valorDesp = valorDespEdt.getText().toString();
                 String tipoDesp = tipoDespEdt.getText().toString();
+                String natDesp = natDespEdt.getText().toString();
+
                 String courseDesc = courseDescEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
                 if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || courseDesc.isEmpty() || dataDesp.isEmpty()) {
@@ -65,19 +72,20 @@ public class NewCourseActivity extends AppCompatActivity {
                     return;
                 }
                 //calling a method to save our course.
-                saveCourse(valorDesp, tipoDesp, courseDesc, dataDesp);
+                saveCourse(valorDesp, tipoDesp, natDesp, courseDesc, dataDesp);
             }
         });
 
     }
 
-    private void saveCourse(float valorDesp, String tipoDesp, String despDescr, String dataDesp) {
+    private void saveCourse(float valorDesp, String tipoDesp, String natDesp, String despDescr, String dataDesp) {
         //inside this method we are passing all the data via an intent.
         Intent data = new Intent();
         //in below line we are passing all our course detail.
         data.putExtra(String.valueOf(EXTRA_VALOR_DESP), valorDesp);
-        data.putExtra(EXTRA_COURSE_NAME, tipoDesp);
-        data.putExtra(EXTRA_DESCRIPTION, despDescr);
+        data.putExtra(EXTRA_TIPO_DESP, tipoDesp);
+        data.putExtra(EXTRA_NAT_DESP, natDesp);
+        data.putExtra(EXTRA_DESCR_DESP, despDescr);
         data.putExtra(EXTRA_DURATION, dataDesp);
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {
