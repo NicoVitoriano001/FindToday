@@ -4,9 +4,9 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 //below line is for setting table name.
-@Entity(tableName = "course_table")
-public class CourseModal {
+@Entity(tableName = "course_table")//nome tabela
 
+public class CourseModal {
     //below line is to auto increment id for each course.
     @PrimaryKey(autoGenerate = true)
     //variable for our id.
@@ -22,7 +22,7 @@ public class CourseModal {
 
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
-    public CourseModal(float valorDesp,String courseName, String courseDescription, String courseDuration) {
+    public CourseModal(float valorDesp, String courseName, String courseDescription, String courseDuration) {
         this.valorDesp = valorDesp;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
@@ -33,8 +33,7 @@ public class CourseModal {
     public int getId() {
         return id;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id) { this.id = id;
     }
     public float getValorDesp() {return valorDesp; }
     public void setValorDesp(float valorDesp) {
@@ -57,6 +56,4 @@ public class CourseModal {
     public void setCourseDuration(String courseDuration) {
         this.courseDuration = courseDuration;
     }
-
-
 }

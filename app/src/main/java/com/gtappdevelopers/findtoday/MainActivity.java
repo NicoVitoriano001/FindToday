@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_COURSE_REQUEST && resultCode == RESULT_OK) {
-            int valorDEsp = data.getIntExtra(NewCourseActivity.EXTRA_VALOR_DESP,-1);
+            float  valorDEsp = data.getFloatExtra(NewCourseActivity.EXTRA_VALOR_DESP ,1.0f);//ESTAVA ,-1   FICAVA COMO VALOR
             String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
             String courseDescription = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
             String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Course can't be updated", Toast.LENGTH_SHORT).show();
                 return;
             }
-            int valorDesp = data.getIntExtra(NewCourseActivity.EXTRA_VALOR_DESP,1);
+            float valorDesp = data.getFloatExtra(NewCourseActivity.EXTRA_VALOR_DESP,1.0f);
             String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
             String courseDesc = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
             String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);

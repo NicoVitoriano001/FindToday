@@ -11,7 +11,6 @@ import java.util.List;
 //Adding annotation to our Dao class
 @androidx.room.Dao
 public interface Dao {
-
     //below method is use to add data to database.
     @Insert
     void insert(CourseModal model);
