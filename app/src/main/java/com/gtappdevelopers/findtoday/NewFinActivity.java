@@ -12,8 +12,8 @@ import android.widget.Toast;
 public class NewFinActivity extends AppCompatActivity {
 
     //creating a variables for our button and edittext.
-    private EditText valorDespEdt, tipoDespEdt, natDespEdt, courseDescEdt, dataDespEdt;
-    private Button courseBtn;
+    private EditText valorDespEdt, tipoDespEdt, natDespEdt, despDescrEdt, dataDespEdt;
+    private Button finBtn;
 
     //creating a constant string variable for our course name, description and duration.
     public static final String EXTRA_ID =
@@ -42,9 +42,9 @@ public class NewFinActivity extends AppCompatActivity {
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
         tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
         natDespEdt = findViewById(R.id.idEdtNatDesp);
-        courseDescEdt = findViewById(R.id.idEdtDespDescr);
+        despDescrEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
-        courseBtn = findViewById(R.id.idBtnSaveCourse);
+        finBtn = findViewById(R.id.idBtnSaveCourse);
         //below line is to get intent as we are getting data via an intent.
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
@@ -52,11 +52,11 @@ public class NewFinActivity extends AppCompatActivity {
             valorDespEdt.setText(intent.getStringExtra(String.valueOf(EXTRA_VALOR_DESP)));
             tipoDespEdt.setText(intent.getStringExtra(EXTRA_TIPO_DESP));
             natDespEdt.setText(intent.getStringExtra(EXTRA_NAT_DESP));
-            courseDescEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
+            despDescrEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
             dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
         //adding on click listner for our save button.
-        courseBtn.setOnClickListener(new View.OnClickListener() {
+        finBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //getting text value from edittext and validating if the text fields are empty or not.
@@ -65,7 +65,7 @@ public class NewFinActivity extends AppCompatActivity {
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String natDesp = natDespEdt.getText().toString();
 
-                String courseDesc = courseDescEdt.getText().toString();
+                String courseDesc = despDescrEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
                 if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || courseDesc.isEmpty() || dataDesp.isEmpty()) {
                     Toast.makeText(NewFinActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
