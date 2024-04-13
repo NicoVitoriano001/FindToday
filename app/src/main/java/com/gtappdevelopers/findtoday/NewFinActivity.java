@@ -87,4 +87,5 @@ public class NewFinActivity extends AppCompatActivity {
         setResult(RESULT_OK, data);
         finish();
     }
+
 }

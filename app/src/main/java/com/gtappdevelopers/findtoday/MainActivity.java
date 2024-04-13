@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initializing our variable for our recycler view and fab.
-        finRV = findViewById(R.id.idRVCourses);
+        finRV = findViewById(R.id.idRVFin);
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);//adicionou o botao
 
@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFinActivity.EXTRA_DURATION, model.getDataDesp());
                 //below line is to start a new activity and adding a edit course constant.
                 startActivityForResult(intent, EDIT_FIN_REQUEST);
-
             }
         });
 
@@ -103,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_FIN_REQUEST && resultCode == RESULT_OK) {
-            float  valorDEsp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP ,1.0f);//ESTAVA ,-1   FICAVA COMO VALOR
+            // Recuperando os dados do intent
+            float valorDesp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP , 1.0f);
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
             String natDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
@@ -111,17 +111,20 @@ public class MainActivity extends AppCompatActivity {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime dataDesp = LocalDateTime.parse(dataDespString, formatter);
 
-            FinModal model = new FinModal(valorDEsp, tipoDesp, natDesp, despDescr, dataDesp);
+            // Criando um novo objeto FinModal
+            FinModal model = new FinModal(valorDesp, tipoDesp, natDesp, despDescr, dataDesp);
             viewmodal.insert(model);
 
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_LONG).show();
+
         } else if (requestCode == EDIT_FIN_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1);
             if (id == -1) {
                 Toast.makeText(this, "Registro não foi atualizado.", Toast.LENGTH_LONG).show();
                 return;
             }
-            float valorDesp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP,1.0f);
+            // Recuperando os dados do intent
+            float valorDesp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP, 1.0f);
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String natDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
@@ -129,14 +132,16 @@ public class MainActivity extends AppCompatActivity {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime dataDesp = LocalDateTime.parse(dataDespString, formatter);
 
+            // Criando um novo objeto FinModal
             FinModal model = new FinModal(valorDesp, tipoDesp, natDesp, despDescr, dataDesp);
             model.setId(id);
 
             viewmodal.update(model);
-            Toast.makeText(this, "Registro a", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registro atualizado", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Course not saved", Toast.LENGTH_LONG).show();
         }
-
     }
+
+
 }
