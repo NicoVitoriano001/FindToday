@@ -12,10 +12,8 @@ public class CourseModal {
     //variable for our id.
     private int id;
     //below line is a variable for course name.
-
-    private int valorDesp;
+    private float valorDesp;
     //below line is use for course description.
-
     private String courseName;
     //below line is use for course description.
     private String courseDescription;
@@ -24,7 +22,7 @@ public class CourseModal {
 
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
-    public CourseModal(int valorDesp,String courseName, String courseDescription, String courseDuration) {
+    public CourseModal(float valorDesp,String courseName, String courseDescription, String courseDuration) {
         this.valorDesp = valorDesp;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
@@ -38,8 +36,8 @@ public class CourseModal {
     public void setId(int id) {
         this.id = id;
     }
-    public int getValorDesp() {return valorDesp; }
-    public void setValorDesp(int valorDesp) {
+    public float getValorDesp() {return valorDesp; }
+    public void setValorDesp(float valorDesp) {
         this.valorDesp = valorDesp;
     }
 
