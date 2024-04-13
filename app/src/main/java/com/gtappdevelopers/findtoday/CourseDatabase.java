@@ -16,6 +16,7 @@ public abstract class CourseDatabase extends RoomDatabase {
     //below line is to create abstract variable for dao.
     public abstract Dao Dao();
 
+
     //on below line we are getting instance for our database.
     public static synchronized CourseDatabase getInstance(Context context) {
         //below line is to check if the instance is null or not.
