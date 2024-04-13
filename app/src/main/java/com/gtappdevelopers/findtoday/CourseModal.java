@@ -16,15 +16,19 @@ public class CourseModal {
     //below line is use for course description.
     private String tipoDesp;
     //below line is use for course description.
+
+    private String natDesp;
+    //below line is use for course description.
     private String despDescr;
     //below line is use for course duration.
     private String dataDesp;
 
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
-    public CourseModal(float valorDesp, String tipoDesp, String despDescr, String dataDesp) {
+    public CourseModal(float valorDesp, String natDesp, String tipoDesp, String despDescr, String dataDesp) {
         this.valorDesp = valorDesp;
         this.tipoDesp = tipoDesp;
+        this.natDesp = natDesp;
         this.despDescr = despDescr;
         this.dataDesp = dataDesp;
     }
@@ -45,6 +49,13 @@ public class CourseModal {
     }
     public void setTipoDesp(String tipoDesp) {
         this.tipoDesp = tipoDesp;
+    }
+
+    public String getNatDesp() {
+        return natDesp;
+    }
+    public void getNatDesp(String natDesp) {
+        this.natDesp = natDesp;
     }
 
     public String getDespDescr() { return despDescr; }

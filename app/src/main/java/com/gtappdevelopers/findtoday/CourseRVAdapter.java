@@ -30,6 +30,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
             return  oldItem.getValorDesp() == newItem.getValorDesp() &&
                     //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
                     oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
+                    oldItem.getNatDesp().equals(newItem.getNatDesp()) &&
                     oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
                     oldItem.getDataDesp().equals(newItem.getDataDesp());
         }
@@ -51,6 +52,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
         holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
        //holder.valorDespTV.setText(model.getValorDesp());
         holder.tipoDespTV.setText(model.getTipoDesp());
+        holder.natDespTV.setText(model.getNatDesp());
         holder.courseDescTV.setText(model.getDespDescr());
         holder.dataDespTV.setText(model.getDataDesp());
     }
@@ -62,15 +64,16 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //view holder class to create a variable for each view.
-        TextView valorDespTV, tipoDespTV, courseDescTV, dataDespTV;
+        TextView valorDespTV, tipoDespTV, natDespTV, courseDescTV, dataDespTV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             //initializing each view of our recycler view.
             valorDespTV = itemView.findViewById(R.id.idTVValorDesp);
             tipoDespTV = itemView.findViewById(R.id.idTVTipoDesp);
+            natDespTV = itemView.findViewById(R.id.idTVNatDesp);
             courseDescTV = itemView.findViewById(R.id.idTVDespDescr);
-            dataDespTV = itemView.findViewById(R.id.idTVDataDesp);
+            dataDespTV = itemView.findViewById(R.id.idTVdataDesp);
             //adding on click listner for each item of recycler view.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
