@@ -17,9 +17,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     //creating a variables for our recycler view.
-    private RecyclerView coursesRV;
-    private static final int ADD_COURSE_REQUEST = 1;
-    private static final int EDIT_COURSE_REQUEST = 2;
+    private RecyclerView finRV;
+    private static final int ADD_FIN_REQUEST = 1;
+    private static final int EDIT_FIN_REQUEST = 2;
     private ViewModal viewmodal;
 
     @Override
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initializing our variable for our recycler view and fab.
-        coursesRV = findViewById(R.id.idRVCourses);
+        finRV = findViewById(R.id.idRVCourses);
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);//adicionou o botao
 
@@ -37,17 +37,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //starting a new activity for adding a new course and passing a constant value in it.
                 Intent intent = new Intent(MainActivity.this, NewFinActivity.class);
-                startActivityForResult(intent, ADD_COURSE_REQUEST);
+                startActivityForResult(intent, ADD_FIN_REQUEST);
             }
         });
 
         //setting layout manager to our adapter class.
-        coursesRV.setLayoutManager(new LinearLayoutManager(this));
-        coursesRV.setHasFixedSize(true);
+        finRV.setLayoutManager(new LinearLayoutManager(this));
+        finRV.setHasFixedSize(true);
         //initializing adapter for recycler view.
         final FinRVAdapter adapter = new FinRVAdapter();
         //setting adapter class for recycler view.
-        coursesRV.setAdapter(adapter);
+        finRV.setAdapter(adapter);
         //passing a data from view modal.
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
         //below line is use to get all the courses from view modal.
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }).
                 //below line is use to attact this to recycler view.
-                        attachToRecyclerView(coursesRV);
+                        attachToRecyclerView(finRV);
         //below line is use to set item click listner for our item of recycler view.
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFinActivity.EXTRA_DESCR_DESP, model.getDespDescr());
                 intent.putExtra(NewFinActivity.EXTRA_DURATION, model.getDataDesp());
                 //below line is to start a new activity and adding a edit course constant.
-                startActivityForResult(intent, EDIT_COURSE_REQUEST);
+                startActivityForResult(intent, EDIT_FIN_REQUEST);
 
             }
         });
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ADD_COURSE_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == ADD_FIN_REQUEST && resultCode == RESULT_OK) {
             float  valorDEsp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP ,1.0f);//ESTAVA ,-1   FICAVA COMO VALOR
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             FinModal model = new FinModal(valorDEsp, tipoDesp, natDesp, despDescr, dataDesp);
             viewmodal.insert(model);
             Toast.makeText(this, "Course saved", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == EDIT_COURSE_REQUEST && resultCode == RESULT_OK) {
+        } else if (requestCode == EDIT_FIN_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1);
             if (id == -1) {
                 Toast.makeText(this, "Course can't be updated", Toast.LENGTH_SHORT).show();
