@@ -29,7 +29,7 @@ public interface Dao {
 
     //beloe line is to read all the courses from our database.
     //in this we are ordering our courses in ascending order with our course name.
-    @Query("SELECT * FROM course_table ORDER BY courseName ASC")
+    @Query("SELECT * FROM course_table ORDER BY tipoDesp ASC")
     LiveData<List<CourseModal>> getAllCourses();
 
 }

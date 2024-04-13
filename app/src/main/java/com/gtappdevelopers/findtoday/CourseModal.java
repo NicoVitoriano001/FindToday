@@ -14,19 +14,19 @@ public class CourseModal {
     //below line is a variable for course name.
     private float valorDesp;
     //below line is use for course description.
-    private String courseName;
+    private String tipoDesp;
     //below line is use for course description.
-    private String courseDescription;
+    private String despDescr;
     //below line is use for course duration.
-    private String courseDuration;
+    private String dataDesp;
 
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
-    public CourseModal(float valorDesp, String courseName, String courseDescription, String courseDuration) {
+    public CourseModal(float valorDesp, String tipoDesp, String despDescr, String dataDesp) {
         this.valorDesp = valorDesp;
-        this.courseName = courseName;
-        this.courseDescription = courseDescription;
-        this.courseDuration = courseDuration;
+        this.tipoDesp = tipoDesp;
+        this.despDescr = despDescr;
+        this.dataDesp = dataDesp;
     }
 
     //on below line we are creating getter and setter methods.
@@ -40,20 +40,20 @@ public class CourseModal {
         this.valorDesp = valorDesp;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getTipoDesp() {
+        return tipoDesp;
     }
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setTipoDesp(String tipoDesp) {
+        this.tipoDesp = tipoDesp;
     }
 
-    public String getCourseDescription() { return courseDescription; }
-    public void setCourseDescription(String courseDescription) { this.courseDescription = courseDescription; }
+    public String getDespDescr() { return despDescr; }
+    public void setDespDescr(String despDescr) { this.despDescr = despDescr; }
 
-    public String getCourseDuration() {
-        return courseDuration;
+    public String getDataDesp() {
+        return dataDesp;
     }
-    public void setCourseDuration(String courseDuration) {
-        this.courseDuration = courseDuration;
+    public void setDataDesp(String dataDesp) {
+        this.dataDesp = dataDesp;
     }
 }
