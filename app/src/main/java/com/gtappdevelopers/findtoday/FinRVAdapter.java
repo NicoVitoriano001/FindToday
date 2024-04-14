@@ -30,7 +30,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
             return  oldItem.getValorDesp() == newItem.getValorDesp() &&
                     //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
                     oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
-                    oldItem.getNatDesp().equals(newItem.getNatDesp()) &&
+                    oldItem.getFontDesp().equals(newItem.getFontDesp()) &&
                     oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
                     oldItem.getDataDesp().equals(newItem.getDataDesp());
         }
@@ -48,30 +48,30 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //below line of code is use to set data to each item of our recycler view.
-        FinModal model = getCourseAt(position);
+        FinModal model = getDespAt(position);
         holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
        //holder.valorDespTV.setText(model.getValorDesp());
         holder.tipoDespTV.setText(model.getTipoDesp());
-        holder.natDespTV.setText(model.getNatDesp());
+        holder.fontDespTV.setText(model.getFontDesp());
         holder.despDescrTV.setText(model.getDespDescr());
         holder.dataDespTV.setText(model.getDataDesp());
     }
 
     //creating a method to get course modal for a specific position.
-    public FinModal getCourseAt(int position) {
+    public FinModal getDespAt(int position) {
         return getItem(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //view holder class to create a variable for each view.
-        TextView valorDespTV, tipoDespTV, natDespTV, despDescrTV, dataDespTV;
+        TextView valorDespTV, tipoDespTV, fontDespTV, despDescrTV, dataDespTV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             //initializing each view of our recycler view.
             valorDespTV = itemView.findViewById(R.id.idTVValorDesp);
             tipoDespTV = itemView.findViewById(R.id.idTVTipoDesp);
-            natDespTV = itemView.findViewById(R.id.idTVNatDesp);
+            fontDespTV = itemView.findViewById(R.id.idTVFontDesp);
             despDescrTV = itemView.findViewById(R.id.idTVDespDescr);
             dataDespTV = itemView.findViewById(R.id.idTVdataDesp);
             //adding on click listner for each item of recycler view.

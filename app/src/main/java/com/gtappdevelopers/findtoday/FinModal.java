@@ -16,7 +16,7 @@ public class FinModal {
     //below line is use for course description.
     private String tipoDesp;
     //below line is use for course description.
-    private String natDesp;
+    private String fontDesp;
     //below line is use for course description.
     private String despDescr;
     //below line is use for course duration.
@@ -24,10 +24,11 @@ public class FinModal {
 
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
-    public FinModal(float valorDesp, String natDesp, String tipoDesp, String despDescr, String dataDesp) {
+    //sequencia abaixo é exibido no main getdesall
+    public FinModal(float valorDesp, String tipoDesp, String fontDesp,  String despDescr, String dataDesp) {
         this.valorDesp = valorDesp;
         this.tipoDesp = tipoDesp;
-        this.natDesp = natDesp;
+        this.fontDesp = fontDesp;
         this.despDescr = despDescr;
         this.dataDesp = dataDesp;
     }
@@ -36,8 +37,8 @@ public class FinModal {
     public int getId() {
         return id;
     }
-    public void setId(int id) { this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
+
     public float getValorDesp() {return valorDesp; }
     public void setValorDesp(float valorDesp) {
         this.valorDesp = valorDesp;
@@ -50,11 +51,11 @@ public class FinModal {
         this.tipoDesp = tipoDesp;
     }
 
-    public String getNatDesp() {
-        return natDesp;
+    public String getFontDesp() {
+        return fontDesp;
     }
-    public void getNatDesp(String natDesp) {
-        this.natDesp = natDesp;
+    public void getFontDesp(String fontDesp) {
+        this.fontDesp = fontDesp;
     }
 
     public String getDespDescr() { return despDescr; }

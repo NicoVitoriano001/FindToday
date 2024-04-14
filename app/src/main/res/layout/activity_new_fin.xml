@@ -29,11 +29,11 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/idEdtNatDesp"
+        android:id="@+id/idEdtFontDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Natureza Desp"
+        android:hint="Fonte Paga"
         android:inputType="textCapCharacters"
         android:imeOptions="actionNext"
         android:singleLine="true" />/>
