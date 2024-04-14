@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class NewFinActivity extends AppCompatActivity {
 
     //creating a variables for our button and edittext.
@@ -37,14 +40,22 @@ public class NewFinActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_new_fin);
-        //initializing our variables for each view.
+
+        // Prencher dataHora automatico. Inicializando os componentes da tela
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
         tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
         natDespEdt = findViewById(R.id.idEdtNatDesp);
         despDescrEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
-        FinBtn = findViewById(R.id.idBtnSaveCourse);
+        FinBtn = findViewById(R.id.idBtnSaveDesp);
+        // Preencher dataHora automaticamente
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dataHoraFormatada = dataHoraAtual.format(formatter);
+        dataDespEdt.setText(dataHoraFormatada);
+
         //below line is to get intent as we are getting data via an intent.
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
@@ -64,9 +75,9 @@ public class NewFinActivity extends AppCompatActivity {
              // float valorDesp = valorDespEdt.getText().toString();
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String natDesp = natDespEdt.getText().toString();
-
                 String despDescr = despDescrEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
+
                 if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
                     Toast.makeText(NewFinActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
                     return;

@@ -55,11 +55,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Data Desp" />
+        android:hint="Data e Hora"
+        android:inputType="datetime"
+        android:imeOptions="actionDone" />
 
     <!--button for saving data to room database-->
     <Button
-        android:id="@+id/idBtnSaveCourse"
+        android:id="@+id/idBtnSaveDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
