@@ -8,23 +8,23 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //adding annotation for our databse entities and db version.
-@Database(entities = {CourseModal.class}, version = 1)
-public abstract class CourseDatabase extends RoomDatabase {
+@Database(entities = {FinModal.class}, version = 1)
+public abstract class FinDatabase extends RoomDatabase {
     //below line is to create instance for our databse class.
-    private static CourseDatabase instance;
+    private static FinDatabase instance;
     //below line is to create abstract variable for dao.
     public abstract Dao Dao();
 
 
     //on below line we are getting instance for our database.
-    public static synchronized CourseDatabase getInstance(Context context) {
+    public static synchronized FinDatabase getInstance(Context context) {
         //below line is to check if the instance is null or not.
         if (instance == null) {
             //if the instance is null we are creating a new instance
             instance =
                     //for creating a instance for our database we are creating a database builder and passing our database class with our database name.
                     Room.databaseBuilder(context.getApplicationContext(),
-                            CourseDatabase.class, "fin_database")
+                            FinDatabase.class, "fin_database")
                             //below line is use to add fall back to destructive migration to our database.
                             .fallbackToDestructiveMigration()
                             //below line is to add callback to our database.
@@ -49,7 +49,7 @@ public abstract class CourseDatabase extends RoomDatabase {
     //we are creating an async task class to perform task in background.
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        PopulateDbAsyncTask(CourseDatabase instance) {
+        PopulateDbAsyncTask(FinDatabase instance) {
             Dao dao = instance.Dao();
         }
 

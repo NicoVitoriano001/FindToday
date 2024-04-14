@@ -8,24 +8,24 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.ViewHolder> {
+public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder> {
     //creating a variable for on item click listner.
     private OnItemClickListener listener;
 
     //creating a constructor class for our adapter class.
-    CourseRVAdapter() {
+    FinRVAdapter() {
         super(DIFF_CALLBACK);
     }
 
     //creating a call back for item of recycler view.
-    private static final DiffUtil.ItemCallback<CourseModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<CourseModal>() {
+    private static final DiffUtil.ItemCallback<FinModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<FinModal>() {
         @Override
-        public boolean areItemsTheSame(CourseModal oldItem, CourseModal newItem) {
+        public boolean areItemsTheSame(FinModal oldItem, FinModal newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(CourseModal oldItem, CourseModal newItem) {
+        public boolean areContentsTheSame(FinModal oldItem, FinModal newItem) {
             //below line is to check the course name, description and course duration.
             return  oldItem.getValorDesp() == newItem.getValorDesp() &&
                     //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
@@ -48,23 +48,23 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //below line of code is use to set data to each item of our recycler view.
-        CourseModal model = getCourseAt(position);
+        FinModal model = getCourseAt(position);
         holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
        //holder.valorDespTV.setText(model.getValorDesp());
         holder.tipoDespTV.setText(model.getTipoDesp());
         holder.natDespTV.setText(model.getNatDesp());
-        holder.courseDescTV.setText(model.getDespDescr());
+        holder.despDescrTV.setText(model.getDespDescr());
         holder.dataDespTV.setText(model.getDataDesp());
     }
 
     //creating a method to get course modal for a specific position.
-    public CourseModal getCourseAt(int position) {
+    public FinModal getCourseAt(int position) {
         return getItem(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //view holder class to create a variable for each view.
-        TextView valorDespTV, tipoDespTV, natDespTV, courseDescTV, dataDespTV;
+        TextView valorDespTV, tipoDespTV, natDespTV, despDescrTV, dataDespTV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +72,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
             valorDespTV = itemView.findViewById(R.id.idTVValorDesp);
             tipoDespTV = itemView.findViewById(R.id.idTVTipoDesp);
             natDespTV = itemView.findViewById(R.id.idTVNatDesp);
-            courseDescTV = itemView.findViewById(R.id.idTVDespDescr);
+            despDescrTV = itemView.findViewById(R.id.idTVDespDescr);
             dataDespTV = itemView.findViewById(R.id.idTVdataDesp);
             //adding on click listner for each item of recycler view.
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(CourseModal model);
+        void onItemClick(FinModal model);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

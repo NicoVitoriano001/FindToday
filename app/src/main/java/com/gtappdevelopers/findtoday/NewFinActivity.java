@@ -9,11 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class NewCourseActivity extends AppCompatActivity {
+public class NewFinActivity extends AppCompatActivity {
 
     //creating a variables for our button and edittext.
-    private EditText valorDespEdt, tipoDespEdt, natDespEdt, courseDescEdt, dataDespEdt;
-    private Button courseBtn;
+    private EditText valorDespEdt, tipoDespEdt, natDespEdt, despDescrEdt, dataDespEdt;
+    private Button FinBtn;
 
     //creating a constant string variable for our course name, description and duration.
     public static final String EXTRA_ID =
@@ -29,9 +29,9 @@ public class NewCourseActivity extends AppCompatActivity {
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_NAT_DESP";
 
     public static final String EXTRA_DESCR_DESP =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DESCRIPTION";
+            "com.gtappdevelopers.gfgroomdatabase.EXTRA_DESP_DESCR";
     public static final String EXTRA_DURATION =
-            "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DURATION";
+            "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
 
 
     @Override
@@ -42,9 +42,9 @@ public class NewCourseActivity extends AppCompatActivity {
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
         tipoDespEdt = findViewById(R.id.idEdtTipoDesp);
         natDespEdt = findViewById(R.id.idEdtNatDesp);
-        courseDescEdt = findViewById(R.id.idEdtDespDescr);
+        despDescrEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
-        courseBtn = findViewById(R.id.idBtnSaveCourse);
+        FinBtn = findViewById(R.id.idBtnSaveCourse);
         //below line is to get intent as we are getting data via an intent.
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
@@ -52,11 +52,11 @@ public class NewCourseActivity extends AppCompatActivity {
             valorDespEdt.setText(intent.getStringExtra(String.valueOf(EXTRA_VALOR_DESP)));
             tipoDespEdt.setText(intent.getStringExtra(EXTRA_TIPO_DESP));
             natDespEdt.setText(intent.getStringExtra(EXTRA_NAT_DESP));
-            courseDescEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
+            despDescrEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
             dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
         //adding on click listner for our save button.
-        courseBtn.setOnClickListener(new View.OnClickListener() {
+        FinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //getting text value from edittext and validating if the text fields are empty or not.
@@ -65,14 +65,14 @@ public class NewCourseActivity extends AppCompatActivity {
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String natDesp = natDespEdt.getText().toString();
 
-                String courseDesc = courseDescEdt.getText().toString();
+                String despDescr = despDescrEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
-                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || courseDesc.isEmpty() || dataDesp.isEmpty()) {
-                    Toast.makeText(NewCourseActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
+                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
+                    Toast.makeText(NewFinActivity.this, "Please enter the valid course details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //calling a method to save our course.
-                saveCourse(valorDesp, tipoDesp, natDesp, courseDesc, dataDesp);
+                saveCourse(valorDesp, tipoDesp, natDesp, despDescr, dataDesp);
             }
         });
 
