@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewModal viewmodal;
 
     @Override
+ //inicio um toque na tela inicial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         finRV = findViewById(R.id.idRVFin);
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);//adicionou o botao
-
         //adding on click listner for floating action button.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, NewFinActivity.class);
                 startActivityForResult(intent, ADD_FIN_REQUEST);
             }
-        });
+        });//fim botao flutuante adicionar
 
         //setting layout manager to our adapter class.
         finRV.setLayoutManager(new LinearLayoutManager(this));
@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         //passing a data from view modal.
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
         //below line is use to get all the courses from view modal.
+
+//inicio lista tudo tela inicial
         viewmodal.getAllCourses().observe(this, new Observer<List<FinModal>>() {
             @Override
             public void onChanged(List<FinModal> models) {
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 adapter.submitList(models);
             }
         });
+
+//fim lista tudo  tela inicial
         //below method is use to add swipe to delete method for item of recycler view.
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -72,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 //on recycler view item swiped then we are deleting the item of our recycler view.
                 viewmodal.delete(adapter.getCourseAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(MainActivity.this, "Course deleted", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Registro deletado.", Toast.LENGTH_LONG).show();
             }
         }).
                 //below line is use to attact this to recycler view.
-                        attachToRecyclerView(finRV);
+                 attachToRecyclerView(finRV);
         //below line is use to set item click listner for our item of recycler view.
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+//fim um toque na tela inicial
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -137,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
             model.setId(id);
 
             viewmodal.update(model);
-            Toast.makeText(this, "Registro atualizado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registro atualizado.", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Course not saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_LONG).show();
         }
     }
 

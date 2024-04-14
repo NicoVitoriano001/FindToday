@@ -19,7 +19,8 @@
             android:id="@+id/idTVValorDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:lineHeight="12dp"
+            android:padding="5dp"
             android:text="Valor Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -29,7 +30,8 @@
             android:id="@+id/idTVTipoDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:lineHeight="12dp"
+            android:padding="5dp"
             android:text="Tipo Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -38,19 +40,19 @@
             android:id="@+id/idTVNatDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:lineHeight="12dp"
+            android:padding="5dp"
             android:text="Natureza Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
-
-
 
         <!--text view for our course description-->
         <TextView
             android:id="@+id/idTVDespDescr"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:layout_height="match_parent"
+            android:lineHeight="12dp"
+            android:padding="5dp"
             android:text="Course Description"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -58,8 +60,9 @@
         <TextView
             android:id="@+id/idTVdataDesp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:layout_height="match_parent"
+            android:lineSpacingExtra="2dp"
+            android:padding="5dp"
             android:text="Data Despesa"
             android:textColor="@color/black"
             android:textSize="15sp" />

@@ -54,10 +54,13 @@ public class NewFinActivity extends AppCompatActivity {
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String natDesp = natDespEdt.getText().toString();
                 String despDescr = despDescrEdt.getText().toString();
-                String dataDesp = dataDespEdt.getText().toString();
+               //String dataDesp = dataDespEdt.getText().toString();
+                String dataDespString = dataDespEdt.getText().toString();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dataDesp = LocalDateTime.parse(dataDespString, formatter);
 
                 // Verificando se os campos estão preenchidos
-                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
+                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp == null) {
                     Toast.makeText(NewFinActivity.this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -68,14 +71,18 @@ public class NewFinActivity extends AppCompatActivity {
         });
     }
 
-    private void saveCourse(float valorDesp, String tipoDesp, String natDesp, String despDescr, String dataDesp) {
+    private void saveCourse(float valorDesp, String tipoDesp, String natDesp, String despDescr, LocalDateTime dataDesp) {
         // Criando uma intent para retornar os dados
         Intent data = new Intent();
         data.putExtra(EXTRA_VALOR_DESP, valorDesp);
         data.putExtra(EXTRA_TIPO_DESP, tipoDesp);
         data.putExtra(EXTRA_NAT_DESP, natDesp);
         data.putExtra(EXTRA_DESCR_DESP, despDescr);
-        data.putExtra(EXTRA_DURATION, dataDesp);
+        //data.putExtra(EXTRA_DURATION, dataDesp);
+        // Convertendo LocalDateTime para String usando um formato específico
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dataDespString = dataDesp.format(formatter);
+        data.putExtra(EXTRA_DURATION, dataDespString);
 
         // Verificando se existe um ID
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
