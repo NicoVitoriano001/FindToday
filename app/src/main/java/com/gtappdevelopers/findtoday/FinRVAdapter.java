@@ -27,8 +27,8 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
         @Override
         public boolean areContentsTheSame(FinModal oldItem, FinModal newItem) {
             //below line is to check the course name, description and course duration.
-            return  oldItem.getValorDesp() == newItem.getValorDesp() &&
-                    //oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
+            return  //oldItem.getValorDesp() == newItem.getValorDesp() &&
+                    oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
                     oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
                     oldItem.getFontDesp().equals(newItem.getFontDesp()) &&
                     oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
@@ -49,8 +49,8 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //below line of code is use to set data to each item of our recycler view.
         FinModal model = getDespAt(position);
-        holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
-       //holder.valorDespTV.setText(model.getValorDesp());
+        //holder.valorDespTV.setText(String.valueOf(model.getValorDesp()));
+        holder.valorDespTV.setText(model.getValorDesp());
         holder.tipoDespTV.setText(model.getTipoDesp());
         holder.fontDespTV.setText(model.getFontDesp());
         holder.despDescrTV.setText(model.getDespDescr());

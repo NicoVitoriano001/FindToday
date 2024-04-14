@@ -12,7 +12,7 @@ public class FinModal {
     //variable for our id.
     private int id;
     //below line is a variable for course name.
-    private float valorDesp;
+    private String valorDesp;
     //below line is use for course description.
     private String tipoDesp;
     //below line is use for course description.
@@ -25,7 +25,7 @@ public class FinModal {
     //below line we are creating constructor class.
     //inside constructor class we are not passing our id because it is incrementing automatically
     //sequencia abaixo é exibido no main getdesall
-    public FinModal(float valorDesp, String tipoDesp, String fontDesp,  String despDescr, String dataDesp) {
+    public FinModal(String valorDesp, String tipoDesp, String fontDesp,  String despDescr, String dataDesp) {
         this.valorDesp = valorDesp;
         this.tipoDesp = tipoDesp;
         this.fontDesp = fontDesp;
@@ -39,8 +39,8 @@ public class FinModal {
     }
     public void setId(int id) { this.id = id; }
 
-    public float getValorDesp() {return valorDesp; }
-    public void setValorDesp(float valorDesp) {
+    public String getValorDesp() {return valorDesp; }
+    public void setValorDesp(String valorDesp) {
         this.valorDesp = valorDesp;
     }
 

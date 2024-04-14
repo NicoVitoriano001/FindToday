@@ -1,4 +1,5 @@
 package com.gtappdevelopers.findtoday;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initializing our variable for our recycler view and fab.
-        FinRV = findViewById(R.id.idRVCourses);
+        FinRV = findViewById(R.id.idRVFin);
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
+        FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
 
         //adding on click listner for floating action button.
         fab.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +42,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, ADD_DESP_REQUEST);
             }
         });
+
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obtendo a data e hora atual da NewFinActivity
+                NewFinActivity newFinActivity = new NewFinActivity();
+                String dataHoraAtual = newFinActivity.getDataHoraAtual();
+                String mensagem = "EM MANUTENÇÃO\n" + dataHoraAtual;
+                Toast.makeText(MainActivity.this, mensagem, Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
         //setting layout manager to our adapter class.
         FinRV.setLayoutManager(new LinearLayoutManager(this));
@@ -106,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_DESP_REQUEST && resultCode == RESULT_OK) {
-            float  valorDEsp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP ,1.00f);//ESTAVA ,-1   FICAVA COMO VALOR
+            String valorDesp = data.getStringExtra(NewFinActivity.EXTRA_VALOR_DESP);//ESTAVA ,-1   FICAVA COMO VALOR
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
             String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
             String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
-            FinModal model = new FinModal(valorDEsp, tipoDesp, fontDesp, despDescr, dataDesp);
+            FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             viewmodal.insert(model);
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_LONG).show();
 
@@ -121,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Registro não pode ser atualizado.", Toast.LENGTH_LONG).show();
                 return;
             }
-            float valorDesp = data.getFloatExtra(NewFinActivity.EXTRA_VALOR_DESP,1.00f);
+            String valorDesp = data.getStringExtra(NewFinActivity.EXTRA_VALOR_DESP);
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);

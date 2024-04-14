@@ -33,6 +33,14 @@ public class NewFinActivity extends AppCompatActivity {
             "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
 
 
+
+//passar data e hora para toast
+    public String getDataHoraAtual() {
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return dataHoraAtual.format(formatter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +54,12 @@ public class NewFinActivity extends AppCompatActivity {
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
         FinBtn = findViewById(R.id.idBtnSaveDesp);
         // Prencher dataHora automatico. Inicializando os componentes da tela
-        LocalDateTime dataHoraAtual = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String dataHoraFormatada = dataHoraAtual.format(formatter);
-        dataDespEdt.setText(dataHoraFormatada);
+        String dataHoraAtual = getDataHoraAtual();
+        dataDespEdt.setText(dataHoraAtual);
+        //LocalDateTime dataHoraAtual = LocalDateTime.now();
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        //String dataHoraFormatada = dataHoraAtual.format(formatter);
+        //dataDespEdt.setText(dataHoraFormatada);
 
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
@@ -64,13 +74,14 @@ public class NewFinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //getting text value from edittext and validating if the text fields are empty or not.
-                float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
+                //float valorDesp = Float.parseFloat(valorDespEdt.getText().toString());
+                String valorDesp = valorDespEdt.getText().toString();
                 String tipoDesp = tipoDespEdt.getText().toString();
                 String fontDesp = fontDespEdt.getText().toString();
                 String despDescr = despDescrEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
 
-                if (String.valueOf(valorDesp).isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
+                if (valorDesp.isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
                     Toast.makeText(NewFinActivity.this, "Entre com todos valores do resgistro.", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -81,7 +92,7 @@ public class NewFinActivity extends AppCompatActivity {
 
     }
 
-    private void saveCourse(float valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
+    private void saveCourse(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
         //PASSA OS DADOS NOVOS/RECUPERADOS PARA SALVAR
         Intent data = new Intent();
         data.putExtra(EXTRA_VALOR_DESP, valorDesp);
