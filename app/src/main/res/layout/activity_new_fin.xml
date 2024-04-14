@@ -23,15 +23,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Tipo Desp" />
+        android:hint="Tipo Desp"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/idEdtNatDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Natureza Desp" />
-
+        android:hint="Natureza Desp"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />/>
 
     <!--edit text for our course description-->
     <EditText
@@ -39,7 +44,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Descrição Desp" />
+        android:hint="Descrição Desp"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
 
     <!--edit text for course description-->
     <EditText
