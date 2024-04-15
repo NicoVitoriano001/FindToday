@@ -29,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private ViewModal viewmodal;
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //solcita permissao
+        // Verifica as permissões antes de fazer o backup do banco de dados
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // Se a permissão ainda não foi concedida, solicita ao usuário
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
@@ -42,12 +44,15 @@ public class MainActivity extends AppCompatActivity {
             // Permissão já concedida, continua com o backup do banco de dados
             boolean backupSuccess = DatabaseBackup.backupDatabase(this);
             if (backupSuccess) {
-                Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
             }
         }
 // fim solcita permissao
+
+
+
         FinRV = findViewById(R.id.idRVFin);
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
