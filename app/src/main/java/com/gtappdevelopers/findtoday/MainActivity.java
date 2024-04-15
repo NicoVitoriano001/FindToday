@@ -43,7 +43,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuscarFinActivity.showToast(MainActivity.this);
+            }
+        });
 
+
+
+
+/*
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, mensagem, Toast.LENGTH_LONG).show();
             }
         });
-
+*/
 
 
         //setting layout manager to our adapter class.

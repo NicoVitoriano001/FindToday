@@ -10,7 +10,7 @@
 
     <!--edit text for our VALOR-->
     <EditText
-        android:id="@+id/idEdtValorDesp"
+        android:id="@+id/idEdtValorDespBuscar"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
 
     <!--edit text for our course name-->
     <EditText
-        android:id="@+id/idEdtTipoDesp"
+        android:id="@+id/idEdtTipoDespBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -29,7 +29,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/idEdtFontDesp"
+        android:id="@+id/idEdtFontDespBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -40,7 +40,7 @@
 
     <!--edit text for our course description-->
     <EditText
-        android:id="@+id/idEdtDespDescr"
+        android:id="@+id/idEdtDespDescrBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -51,7 +51,7 @@
 
     <!--edit text for course description-->
     <EditText
-        android:id="@+id/idEdtDataDesp"
+        android:id="@+id/idEdtDataDespBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -61,12 +61,12 @@
 
     <!--button for saving data to room database-->
     <Button
-        android:id="@+id/idBtnSaveDesp"
+        android:id="@+id/idBtnBuscarDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="5dp"
-        android:text="Salvar Registro"
+        android:text="Buscar"
         android:textAllCaps="false" />
 
 
