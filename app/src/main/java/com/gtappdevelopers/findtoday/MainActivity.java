@@ -3,12 +3,17 @@ package com.gtappdevelopers.findtoday;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -22,66 +27,63 @@ public class MainActivity extends AppCompatActivity {
     private static final int ADD_DESP_REQUEST = 1;
     private static final int EDIT_DESP_REQUEST = 2;
     private ViewModal viewmodal;
+    private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //initializing our variable for our recycler view and fab.
-        FinRV = findViewById(R.id.idRVFin);
 
+        //solcita permissao
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // Se a permissão ainda não foi concedida, solicita ao usuário
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
+        } else {
+            // Permissão já concedida, continua com o backup do banco de dados
+            boolean backupSuccess = DatabaseBackup.backupDatabase(this);
+            if (backupSuccess) {
+                Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_LONG).show();
+            }
+        }
+// fim solcita permissao
+        FinRV = findViewById(R.id.idRVFin);
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
 
-        //adding on click listner for floating action button.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //starting a new activity for adding a new course and passing a constant value in it.
                 Intent intent = new Intent(MainActivity.this, NewFinActivity.class);
-                startActivityForResult(intent, ADD_DESP_REQUEST); //tras aqui o setResult(RESULT_OK, data) da newactivity
+                startActivityForResult(intent, ADD_DESP_REQUEST);
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuscarFinActivity.showToast(MainActivity.this);
+                boolean backupSuccess = DatabaseBackup.backupDatabase(MainActivity.this);
+                if (backupSuccess) {
+                    Toast.makeText(MainActivity.this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_LONG).show();
+                }
             }
         });
-/*
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Obtendo a data e hora atual da NewFinActivity
-                NewFinActivity newFinActivity = new NewFinActivity();
-                String dataHoraAtual = newFinActivity.getDataHoraAtual();
-                String mensagem = "EM MANUTENÇÃO\n" + dataHoraAtual;
-                Toast.makeText(MainActivity.this, mensagem, Toast.LENGTH_LONG).show();
-            }
-        });
-*/
 
-        //setting layout manager to our adapter class.
         FinRV.setLayoutManager(new LinearLayoutManager(this));
         FinRV.setHasFixedSize(true);
-        //initializing adapter for recycler view.
         final FinRVAdapter adapter = new FinRVAdapter();
-        //setting adapter class for recycler view.
         FinRV.setAdapter(adapter);
-        //passing a data from view modal.
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
-        //below line is use to get all the courses from view modal.
         viewmodal.getallDesp().observe(this, new Observer<List<FinModal>>() {
             @Override
             public void onChanged(List<FinModal> models) {
-                //when the data is changed in our models we are adding that list to our adapter class.
                 adapter.submitList(models);
             }
-        });//fim pega todas desp
+        });
 
-
-        //below method is use to add swipe to delete method for item of recycler view.
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -90,22 +92,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //on recycler view item swiped then we are deleting the item of our recycler view.
                 viewmodal.delete(adapter.getDespAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(MainActivity.this, "Registro Deletado.", Toast.LENGTH_LONG).show();
             }
-        }).//deleta pelo movimento
+        }).attachToRecyclerView(FinRV);
 
-        //below line is use to attact this to recycler view.
-        attachToRecyclerView(FinRV);
-
-        //below line is use to set item click listner for our item of recycler view.
-        //clicar na tela main RecyclerView, abrea qui
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(FinModal model) {
-                //after clicking on item of recycler view
-                //we are opening a new activity and passing a data to our activity.
                 Intent intent = new Intent(MainActivity.this, NewFinActivity.class);
                 intent.putExtra(NewFinActivity.EXTRA_ID, model.getId());
                 intent.putExtra(NewFinActivity.EXTRA_VALOR_DESP, model.getValorDesp());
@@ -113,13 +107,12 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFinActivity.EXTRA_NAT_DESP, model.getFontDesp());
                 intent.putExtra(NewFinActivity.EXTRA_DESCR_DESP, model.getDespDescr());
                 intent.putExtra(NewFinActivity.EXTRA_DURATION, model.getDataDesp());
-                //below line is to start a new activity and adding a edit course constant.
                 startActivityForResult(intent, EDIT_DESP_REQUEST);
             }
         });
+    }
 
-    }//fim onCreate, principal do botao flutuante
-
+    // Método para fazer o backup do banco de dados
 
     /*Quando a NewFinActivity termina e chama setResult(RESULT_OK, data),
     o método onActivityResult() é chamado na MainActivity. Nesse método, você pode recuperar
@@ -156,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
     getStringExtra() e armazenando-os em variáveis locais (valorDesp, tipoDesp, despDescr, fontDesp e dataDesp).
     Esses dados foram definidos anteriormente na NewFinActivity e enviados de volta como resultado da atividade.*/
 
-
             FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             viewmodal.insert(model);
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_LONG).show();
@@ -181,4 +173,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    //solcita permissao
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                boolean backupSuccess = DatabaseBackup.backupDatabase(this);
+                if (backupSuccess) {
+                    Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+//fim solcita permissao
+
 }

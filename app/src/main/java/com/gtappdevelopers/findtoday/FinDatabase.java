@@ -25,7 +25,7 @@ public abstract class FinDatabase extends RoomDatabase {
             instance =
                     //for creating a instance for our database we are creating a database builder and passing our database class with our database name.
                     Room.databaseBuilder(context.getApplicationContext(),
-                            FinDatabase.class, "fin_database")
+                            FinDatabase.class, "fin_database.db")
                             //below line is use to add fall back to destructive migration to our database.
                             .fallbackToDestructiveMigration()
                             //below line is to add callback to our database.
