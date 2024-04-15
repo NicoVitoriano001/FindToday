@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         }
 // fim solcita permissao
 
-
-
         FinRV = findViewById(R.id.idRVFin);
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
@@ -186,12 +184,12 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 boolean backupSuccess = DatabaseBackup.backupDatabase(this);
                 if (backupSuccess) {
-                    Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_LONG).show();
             }
         }
     }
