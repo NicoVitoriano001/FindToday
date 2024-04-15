@@ -49,10 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 BuscarFinActivity.showToast(MainActivity.this);
             }
         });
-
-
-
-
 /*
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 */
-
 
         //setting layout manager to our adapter class.
         FinRV.setLayoutManager(new LinearLayoutManager(this));
@@ -101,10 +96,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }).//deleta pelo movimento
 
-
         //below line is use to attact this to recycler view.
         attachToRecyclerView(FinRV);
-
 
         //below line is use to set item click listner for our item of recycler view.
         //clicar na tela main RecyclerView, abrea qui
@@ -146,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
     Aqui você está verificando se o
     requestCode é igual a ADD_DESP_REQUEST e se o resultCode é igual a RESULT_OK. Isso significa que a
     atividade retornou com sucesso e os dados estão disponíveis para serem processados.
-
     */
 
     @Override

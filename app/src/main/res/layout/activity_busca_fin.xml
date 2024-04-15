@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Valor Desp" />
+        android:hint="Valor Buscar" />
 
     <!--edit text for our course name-->
     <EditText
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Tipo Desp"
+        android:hint="Tipo Buscar"
         android:inputType="textCapCharacters"
         android:imeOptions="actionNext"
         android:singleLine="true" />
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Fonte Paga"
+        android:hint="Fonte Buscar"
         android:inputType="textCapCharacters"
         android:imeOptions="actionNext"
         android:singleLine="true" />/>
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Descrição Desp"
+        android:hint="Descrição Buscar"
         android:inputType="textCapCharacters"
         android:imeOptions="actionNext"
         android:singleLine="true" />
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Data e Hora"
+        android:hint="Data e Hora Buscar"
         android:inputType="datetime"
         android:imeOptions="actionDone" />
 
