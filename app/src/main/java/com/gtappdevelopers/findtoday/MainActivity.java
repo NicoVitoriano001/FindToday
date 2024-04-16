@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,7 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     //creating a variables for our recycler view.
     private RecyclerView FinRV;
     private static final int ADD_DESP_REQUEST = 1;
@@ -29,19 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private ViewModal viewmodal;
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //solcita permissao
         // Verifica as permissões antes de fazer o backup do banco de dados
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            // Se a permissão ainda não foi concedida, solicita ao usuário
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
         } else {
-            // Permissão já concedida, continua com o backup do banco de dados
             boolean backupSuccess = DatabaseBackup.backupDatabase(this);
             if (backupSuccess) {
                 Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
@@ -54,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         FinRV = findViewById(R.id.idRVFin);
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean backupSuccess = DatabaseBackup.backupDatabase(MainActivity.this);
                 if (backupSuccess) {
-                    Toast.makeText(MainActivity.this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -114,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    // Método para fazer o backup do banco de dados
 
     /*Quando a NewFinActivity termina e chama setResult(RESULT_OK, data),
     o método onActivityResult() é chamado na MainActivity. Nesse método, você pode recuperar
@@ -174,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_LONG).show();
         }
-
     }
+
     //solcita permissao
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -184,15 +174,14 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 boolean backupSuccess = DatabaseBackup.backupDatabase(this);
                 if (backupSuccess) {
-                    Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_SHORT).show();
             }
         }
     }
 //fim solcita permissao
-
 }

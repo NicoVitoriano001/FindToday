@@ -1,4 +1,5 @@
 package com.gtappdevelopers.findtoday;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder> {
+
     //creating a variable for on item click listner.
     private OnItemClickListener listener;
 
@@ -85,7 +87,6 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
                     }
                 }
             });
-
         }
     }
 

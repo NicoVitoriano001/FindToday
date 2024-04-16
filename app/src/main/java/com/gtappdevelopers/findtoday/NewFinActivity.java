@@ -13,11 +13,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class NewFinActivity extends AppCompatActivity {
-
     //creating a variables for our button and edittext.
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
     private Button FinBtn;
-
     //creating a constant string variable for our course name, description and duration.
     public static final String EXTRA_ID = "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID";
     public static final String EXTRA_VALOR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
@@ -26,18 +24,15 @@ public class NewFinActivity extends AppCompatActivity {
     public static final String EXTRA_DESCR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DESP_DESCR";
     public static final String EXTRA_DURATION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
 
-
 //passar data e hora para toast
     public String getDataHoraAtual() {
         LocalDateTime dataHoraAtual = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dataHoraAtual.format(formatter);
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_new_fin);
         //tela inicial dos novos
         valorDespEdt = findViewById(R.id.idEdtValorDesp);
@@ -74,7 +69,6 @@ public class NewFinActivity extends AppCompatActivity {
                 String despDescr = despDescrEdt.getText().toString();
                 String dataDesp = dataDespEdt.getText().toString();
 
-
                 if (valorDesp.isEmpty() || tipoDesp.isEmpty() || despDescr.isEmpty() || dataDesp.isEmpty()) {
                     Toast.makeText(NewFinActivity.this, "Entre com todos valores do resgistro.", Toast.LENGTH_LONG).show();
                     return;
@@ -83,7 +77,6 @@ public class NewFinActivity extends AppCompatActivity {
                 saveCourse(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             }
         });
-
     }
 
     private void saveCourse(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
@@ -106,5 +99,4 @@ public class NewFinActivity extends AppCompatActivity {
         //displaying a toast message after adding the data
         Toast.makeText(this, "Registro foi salvo no Database -EDIT.", Toast.LENGTH_LONG).show();
     }
-
 }
