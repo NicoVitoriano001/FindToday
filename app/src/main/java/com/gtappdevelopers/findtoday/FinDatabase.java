@@ -21,19 +21,13 @@ public abstract class FinDatabase extends RoomDatabase {
     public static synchronized FinDatabase getInstance(Context context) {
         //below line is to check if the instance is null or not.
         if (instance == null) {
-            //if the instance is null we are creating a new instance
             instance =
-                    //for creating a instance for our database we are creating a database builder and passing our database class with our database name.
                     Room.databaseBuilder(context.getApplicationContext(),
                             FinDatabase.class, "fin_database.db")
-                            //below line is use to add fall back to destructive migration to our database.
                             .fallbackToDestructiveMigration()
-                            //below line is to add callback to our database.
                             .addCallback(roomCallback)
-                            //below line is to build our database.
                             .build();
         }
-        //after creating an instance we are returning our instance
         return instance;
     }
 
