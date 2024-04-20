@@ -22,15 +22,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     //creating a variables for our recycler view.
     private RecyclerView FinRV;
+    private ViewModal viewmodal;
     private static final int ADD_DESP_REQUEST = 1;
     private static final int EDIT_DESP_REQUEST = 2;
-    private ViewModal viewmodal;
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // Verifica as permissões antes de fazer o backup do banco de dados
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 // fim solcita permissao
 
         FinRV = findViewById(R.id.idRVFin);
+
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         final FinRVAdapter adapter = new FinRVAdapter();
         FinRV.setAdapter(adapter);
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
+
         viewmodal.getallDesp().observe(this, new Observer<List<FinModal>>() {
             @Override
             public void onChanged(List<FinModal> models) {
@@ -160,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
             FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             model.setId(id);
             viewmodal.update(model);
-            Toast.makeText(this, "Registro salvo.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registro salvo.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_SHORT).show();
         }
     }
 
