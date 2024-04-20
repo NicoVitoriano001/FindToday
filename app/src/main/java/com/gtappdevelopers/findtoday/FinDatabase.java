@@ -13,7 +13,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 public abstract class FinDatabase extends RoomDatabase {
     //below line is to create instance for our databse class.
     private static FinDatabase instance;
-    //below line is to create abstract variable for dao.
     public abstract Dao Dao();
 
 
@@ -36,7 +35,6 @@ public abstract class FinDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            //this method is called when database is created and below line is to populate our data.
             new PopulateDbAsyncTask(instance).execute();
         }
     };

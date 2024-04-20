@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 //below line is for setting table name.
-@Entity(tableName = "fin_table")//nome tabela
+@Entity(tableName = "fin_table")
 
 public class FinModal {
     //below line is to auto increment id for each course.

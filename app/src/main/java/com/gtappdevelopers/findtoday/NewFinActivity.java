@@ -20,7 +20,7 @@ public class NewFinActivity extends AppCompatActivity {
     public static final String EXTRA_ID = "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID";
     public static final String EXTRA_VALOR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
     public static final String EXTRA_TIPO_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_TIPO_DESP";
-    public static final String EXTRA_NAT_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_NAT_DESP";
+    public static final String EXTRA_FONT_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_FONT_DESP";
     public static final String EXTRA_DESCR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DESP_DESCR";
     public static final String EXTRA_DURATION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
 
@@ -52,7 +52,7 @@ public class NewFinActivity extends AppCompatActivity {
         if (intent.hasExtra(EXTRA_ID)) {
             valorDespEdt.setText(intent.getStringExtra(EXTRA_VALOR_DESP));
             tipoDespEdt.setText(intent.getStringExtra(EXTRA_TIPO_DESP));
-            fontDespEdt.setText(intent.getStringExtra(EXTRA_NAT_DESP));
+            fontDespEdt.setText(intent.getStringExtra(EXTRA_FONT_DESP));
             despDescrEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
             dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
@@ -84,7 +84,7 @@ public class NewFinActivity extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra(EXTRA_VALOR_DESP, valorDesp);
         data.putExtra(EXTRA_TIPO_DESP, tipoDesp);
-        data.putExtra(EXTRA_NAT_DESP, fontDesp);
+        data.putExtra(EXTRA_FONT_DESP, fontDesp);
         data.putExtra(EXTRA_DESCR_DESP, despDescr);
         data.putExtra(EXTRA_DURATION, dataDesp);
 

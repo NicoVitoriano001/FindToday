@@ -28,7 +28,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
 
         @Override
         public boolean areContentsTheSame(FinModal oldItem, FinModal newItem) {
-            //below line is to check the course name, description and course duration.
+            //below line is to check the fin name, description and fin data.
             return  //oldItem.getValorDesp() == newItem.getValorDesp() &&
                     oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
                     oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&

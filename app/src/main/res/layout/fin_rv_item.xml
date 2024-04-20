@@ -11,7 +11,6 @@
         android:id="@+id/idLLCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:orientation="vertical">
 
         <!--text view for our valor desp-->
@@ -19,8 +18,7 @@
             android:id="@+id/idTVValorDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Valor Desp"
+            android:text="Valorrrrrrr Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -29,7 +27,6 @@
             android:id="@+id/idTVTipoDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:text="Tipo Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -38,19 +35,15 @@
             android:id="@+id/idTVFontDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:text="Natureza Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
-
-
 
         <!--text view for our course description-->
         <TextView
             android:id="@+id/idTVDespDescr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:text="Course Description"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -59,7 +52,6 @@
             android:id="@+id/idTVdataDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:text="Data Despesa"
             android:textColor="@color/black"
             android:textSize="15sp" />

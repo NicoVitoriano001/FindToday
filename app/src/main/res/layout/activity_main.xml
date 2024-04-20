@@ -13,11 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/idFABAdd"
-        android:layout_width="wrap_content"
+        android:layout_width="101dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -40,6 +38,6 @@
         android:layout_marginEnd="308dp"
         android:layout_marginBottom="18dp"
         android:src="@drawable/ic_search_icon"
-        app:tint="@color/purple_200" />
+        app:tint="@color/white" />
 
 </RelativeLayout>

@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFinActivity.EXTRA_ID, model.getId());
                 intent.putExtra(NewFinActivity.EXTRA_VALOR_DESP, model.getValorDesp());
                 intent.putExtra(NewFinActivity.EXTRA_TIPO_DESP, model.getTipoDesp());
-                intent.putExtra(NewFinActivity.EXTRA_NAT_DESP, model.getFontDesp());
+                intent.putExtra(NewFinActivity.EXTRA_FONT_DESP, model.getFontDesp());
                 intent.putExtra(NewFinActivity.EXTRA_DESCR_DESP, model.getDespDescr());
                 intent.putExtra(NewFinActivity.EXTRA_DURATION, model.getDataDesp());
                 startActivityForResult(intent, EDIT_DESP_REQUEST);
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             String valorDesp = data.getStringExtra(NewFinActivity.EXTRA_VALOR_DESP);
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
-            String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
+            String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_FONT_DESP);
             String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
 
     /*Aqui você está recuperando os dados extras da intent data usando os métodos
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             }
             String valorDesp = data.getStringExtra(NewFinActivity.EXTRA_VALOR_DESP);
             String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
-            String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_NAT_DESP);
+            String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_FONT_DESP);
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
             String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
             FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
