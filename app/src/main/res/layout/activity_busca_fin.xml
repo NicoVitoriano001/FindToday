@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewFinActivity">
+
+
+    <!--edit text for our VALOR-->
+    <EditText
+        android:id="@+id/idEdtValorDespBuscar"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Valor Buscar" />
+
+    <!--edit text for our course name-->
+    <EditText
+        android:id="@+id/idEdtTipoDespBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Tipo Buscar"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/idEdtFontDespBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Fonte Buscar"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />/>
+
+    <!--edit text for our course description-->
+    <EditText
+        android:id="@+id/idEdtDespDescrBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Descrição Buscar"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
+
+    <!--edit text for course description-->
+    <EditText
+        android:id="@+id/idEdtDataDespBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Data e Hora Buscar"
+        android:inputType="datetime"
+        android:imeOptions="actionDone" />
+
+    <!--button for saving data to room database-->
+    <Button
+        android:id="@+id/idBtnBuscarDesp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:text="Buscar"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

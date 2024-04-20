@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewCourseActivity">
+    tools:context=".NewFinActivity">
 
 
     <!--edit text for our VALOR-->
@@ -23,15 +23,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Tipo Desp" />
+        android:hint="Tipo Desp"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
 
     <EditText
-        android:id="@+id/idEdtNatDesp"
+        android:id="@+id/idEdtFontDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Natureza Desp" />
-
+        android:hint="Fonte Paga"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />/>
 
     <!--edit text for our course description-->
     <EditText
@@ -39,7 +44,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Descrição Desp" />
+        android:hint="Descrição Desp"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
 
     <!--edit text for course description-->
     <EditText
@@ -47,16 +55,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Data Desp" />
+        android:hint="Data e Hora"
+        android:inputType="datetime"
+        android:imeOptions="actionDone" />
 
     <!--button for saving data to room database-->
     <Button
-        android:id="@+id/idBtnSaveCourse"
+        android:id="@+id/idBtnSaveDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="5dp"
-        android:text="Save your Data"
+        android:text="Salvar Registro"
         android:textAllCaps="false" />
 
 

@@ -1,56 +1,57 @@
 package com.gtappdevelopers.findtoday;
+
 import android.app.Application;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
-public class CourseRepository {
-    //below line is the create a variable for dao and list for all courses.
+public class FinRepository {
+    //below line is the create a variable for dao and list for all fin.
     private Dao dao;
-    private LiveData<List<CourseModal>> allCourses;
+    private LiveData<List<FinModal>> allDesp;
 
     //creating a constructor for our variables and passing the variables to it.
-    public CourseRepository(Application application) {
-        CourseDatabase database = CourseDatabase.getInstance(application);
+    public FinRepository(Application application) {
+        FinDatabase database = FinDatabase.getInstance(application);
         dao = database.Dao();
-        allCourses = dao.getAllCourses();
+        allDesp = dao.getallDesp();
     }
 
     //creating a method to insert the data to our database.
-    public void insert(CourseModal model) {
-        new InsertCourseAsyncTask(dao).execute(model);
+    public void insert(FinModal model) {
+        new InsertFinAsyncTask(dao).execute(model);
     }
 
     //creating a method to update data in database.
-    public void update(CourseModal model) {
-        new UpdateCourseAsyncTask(dao).execute(model);
+    public void update(FinModal model) {
+        new UpdateFinAsyncTask(dao).execute(model);
     }
 
     //creating a method to delete the data in our database.
-    public void delete(CourseModal model) {
-        new DeleteCourseAsyncTask(dao).execute(model);
+    public void delete(FinModal model) {
+        new DeleteFinAsyncTask(dao).execute(model);
     }
 
     //below is the method to delete all the courses.
-    public void deleteAllCourses() {
-        new DeleteAllCoursesAsyncTask(dao).execute();
+    public void deleteallDesp() {
+        new DeleteallDespAsyncTask(dao).execute();
     }
 
     //below method is to read all the courses.
-    public LiveData<List<CourseModal>> getAllCourses() {
-        return allCourses;
+    public LiveData<List<FinModal>> getallDesp() {
+        return allDesp;
     }
 
     //we are creating a async task method to insert new course.
-    private static class InsertCourseAsyncTask extends AsyncTask<CourseModal, Void, Void> {
+    private static class InsertFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
-        private InsertCourseAsyncTask(Dao dao) {
+        private InsertFinAsyncTask(Dao dao) {
             this.dao = dao;
         }
 
         @Override
-        protected Void doInBackground(CourseModal... model) {
+        protected Void doInBackground(FinModal... model) {
             //below line is use to insert our modal in dao.
             dao.insert(model[0]);
             return null;
@@ -58,15 +59,15 @@ public class CourseRepository {
     }
 
     //we are creating a async task method to update our course.
-    private static class UpdateCourseAsyncTask extends AsyncTask<CourseModal, Void, Void> {
+    private static class UpdateFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
-        private UpdateCourseAsyncTask(Dao dao) {
+        private UpdateFinAsyncTask(Dao dao) {
             this.dao = dao;
         }
 
         @Override
-        protected Void doInBackground(CourseModal... models) {
+        protected Void doInBackground(FinModal... models) {
             //below line is use to update our modal in dao.
             dao.update(models[0]);
             return null;
@@ -74,15 +75,15 @@ public class CourseRepository {
     }
 
     //we are creating a async task method to delete course.
-    private static class DeleteCourseAsyncTask extends AsyncTask<CourseModal, Void, Void> {
+    private static class DeleteFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
-        private DeleteCourseAsyncTask(Dao dao) {
+        private DeleteFinAsyncTask(Dao dao) {
             this.dao = dao;
         }
 
         @Override
-        protected Void doInBackground(CourseModal... models) {
+        protected Void doInBackground(FinModal... models) {
             //below line is use to delete our course modal in dao.
             dao.delete(models[0]);
             return null;
@@ -90,17 +91,17 @@ public class CourseRepository {
     }
 
     //we are creating a async task method to delete all courses.
-    private static class DeleteAllCoursesAsyncTask extends AsyncTask<Void, Void, Void> {
+    private static class DeleteallDespAsyncTask extends AsyncTask<Void, Void, Void> {
         private Dao dao;
 
-        private DeleteAllCoursesAsyncTask(Dao dao) {
+        private DeleteallDespAsyncTask(Dao dao) {
             this.dao = dao;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             //on below line calling method to delete all courses.
-            dao.deleteAllCourses();
+            dao.deleteallDesp();
             return null;
         }
     }
