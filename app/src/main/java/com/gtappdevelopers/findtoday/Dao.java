@@ -32,4 +32,11 @@ public interface Dao {
     @Query("SELECT * FROM fin_table ORDER BY dataDesp DESC, tipoDesp ASC")
     LiveData<List<FinModal>> getallDesp();
 
+    @Query("SELECT * FROM fin_table WHERE valorDesp LIKE '%' || :valorDesp || '%' " +
+            "AND tipoDesp LIKE '%' || :tipoDesp || '%' " +
+            "AND fontDesp LIKE '%' || :fontDesp || '%' " +
+            "AND despDescr LIKE '%' || :despDescr || '%' " +
+            "AND dataDesp LIKE '%' || :dataDesp || '%'")
+    LiveData<List<FinModal>> buscaDesp(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp);
+
 }
