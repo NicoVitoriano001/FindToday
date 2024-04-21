@@ -42,8 +42,8 @@ public class BuscarFinActivity extends AppCompatActivity {
                 String despDescr = despDescrEdtBusca.getText().toString();
                 String dataDesp = dataDespEdtBusca.getText().toString();
                 Toast.makeText(BuscarFinActivity.this, "Valor: "+valorDesp, Toast.LENGTH_LONG).show();
-                //calling a method to save our course.
-            }
+                // Exibe o diálogo quando necessário
+          }
         });
     }
 }
