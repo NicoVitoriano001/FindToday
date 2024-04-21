@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
                 }
-            } else {
+            }   else {
                 Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_SHORT).show();
             }
         }

@@ -8,7 +8,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-//adding annotation for our databse entities and db version.
 @Database(entities = {FinModal.class}, version = 1)
 public abstract class FinDatabase extends RoomDatabase {
     //below line is to create instance for our databse class.
