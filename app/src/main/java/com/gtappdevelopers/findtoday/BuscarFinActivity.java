@@ -1,11 +1,15 @@
 package com.gtappdevelopers.findtoday;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class BuscarFinActivity extends AppCompatActivity {
     //creating a variables for our button and edittext.
@@ -19,10 +23,16 @@ public class BuscarFinActivity extends AppCompatActivity {
     public static final String EXTRA_DESCR_DESP_BUSCA = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DESP_DESCR";
     public static final String EXTRA_DURATION_BUSCA = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION_BUSCA";
 
+    private Dao dao;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca_fin);
+
+        dao = FinDatabase.getInstance(this).Dao();
+
         //tela inicial dos novos
         valorDespEdtBusca = findViewById(R.id.idEdtValorDespBuscar);
         tipoDespEdtBusca = findViewById(R.id.idEdtTipoDespBuscar);
@@ -34,16 +44,29 @@ public class BuscarFinActivity extends AppCompatActivity {
         FinBtnBusca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getting text value from edittext and validating if the text fields are empty or not.
-                //float valorDesp = Float.parseFloat(valorDespEdtBusca.getText().toString());
+                // Obtém os valores dos EditTexts
                 String valorDesp = valorDespEdtBusca.getText().toString();
                 String tipoDesp = tipoDespEdtBusca.getText().toString();
                 String fontDesp = fontDespEdtBusca.getText().toString();
                 String despDescr = despDescrEdtBusca.getText().toString();
                 String dataDesp = dataDespEdtBusca.getText().toString();
-                Toast.makeText(BuscarFinActivity.this, "Valor: "+valorDesp, Toast.LENGTH_LONG).show();
-                // Exibe o diálogo quando necessário
-          }
+
+                // Chama o método buscaDesp do Dao e observa os resultados
+                dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp).observe(BuscarFinActivity.this, new Observer<List<FinModal>>() {
+                    @Override
+                    public void onChanged(List<FinModal> finModals) {
+                        // Exibe os resultados em um DialogFragment
+                        exibirResultados(finModals);
+                    }
+                });
+            }
         });
     }
+
+    private void exibirResultados(List<FinModal> resultados) {
+        ResultadosDialogFragment dialogFragment = ResultadosDialogFragment.newInstance(resultados);
+        dialogFragment.show(getSupportFragmentManager(), "resultados_dialog");
+    }
+
+
 }
