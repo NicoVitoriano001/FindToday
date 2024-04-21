@@ -74,12 +74,12 @@ public class NewFinActivity extends AppCompatActivity {
                     return;
                 }
                 //calling a method to save our course.
-                saveCourse(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
+                saveFin(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             }
         });
     }
 
-    private void saveCourse(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
+    private void saveFin(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
         //PASSA OS DADOS NOVOS/RECUPERADOS PARA SALVAR
         Intent data = new Intent();
         data.putExtra(EXTRA_VALOR_DESP, valorDesp);
