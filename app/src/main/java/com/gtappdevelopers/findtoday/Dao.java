@@ -39,4 +39,5 @@ public interface Dao {
             "AND dataDesp LIKE '%' || :dataDesp || '%'")
     LiveData<List<FinModal>> buscaDesp(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp);
 
+
 }
