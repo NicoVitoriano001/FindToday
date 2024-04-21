@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewModal viewmodal;
     private static final int ADD_DESP_REQUEST = 1;
     private static final int EDIT_DESP_REQUEST = 2;
+    private static final int SEARCH_DESP_REQUEST = 3; // Define um requestCode para BuscarFinActivity
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
 
@@ -61,12 +62,8 @@ public class MainActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean backupSuccess = DatabaseBackup.backupDatabase(MainActivity.this);
-                if (backupSuccess) {
-                    Toast.makeText(MainActivity.this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(MainActivity.this, BuscarFinActivity.class);
+                startActivityForResult(intent, SEARCH_DESP_REQUEST); // Use o requestCode SEARCH_DESP_REQUEST
             }
         });
 
@@ -111,25 +108,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*Quando a NewFinActivity termina e chama setResult(RESULT_OK, data),
-    o método onActivityResult() é chamado na MainActivity. Nesse método, você pode recuperar
-    os dados enviados de volta pela NewFinActivity usando o objeto Intent retornado.*/
-
-    /*
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    Este é o cabeçalho do método onActivityResult(), que é chamado quando uma atividade que foi
-    iniciada com startActivityForResult() é concluída e retorna algum resultado. Ele recebe três
-    parâmetros: requestCode (código de solicitação que você definiu ao chamar startActivityForResult()),
-    resultCode (resultado da atividade, como RESULT_OK ou RESULT_CANCELED), e data (os dados extras
-    retornados pela atividade).
-    super.onActivityResult(requestCode, resultCode, data);: Esta linha chama o método onActivityResult()
-    da superclasse, que é necessário para o correto funcionamento do ciclo de vida da atividade.
-
-    if (requestCode == ADD_DESP_REQUEST && resultCode == RESULT_OK) {
-    Aqui você está verificando se o
-    requestCode é igual a ADD_DESP_REQUEST e se o resultCode é igual a RESULT_OK. Isso significa que a
-    atividade retornou com sucesso e os dados estão disponíveis para serem processados.
-    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -141,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
             String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
             String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_FONT_DESP);
             String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
-
-    /*Aqui você está recuperando os dados extras da intent data usando os métodos
-    getStringExtra() e armazenando-os em variáveis locais (valorDesp, tipoDesp, despDescr, fontDesp e dataDesp).
-    Esses dados foram definidos anteriormente na NewFinActivity e enviados de volta como resultado da atividade.*/
 
             FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             viewmodal.insert(model);
@@ -165,12 +139,19 @@ public class MainActivity extends AppCompatActivity {
             model.setId(id);
             viewmodal.update(model);
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_SHORT).show();
+
+        } else if (requestCode == SEARCH_DESP_REQUEST && resultCode == RESULT_OK) {
+            String valorDesp = data.getStringExtra(BuscarFinActivity.EXTRA_VALOR_DESP_BUSCA);
+            String tipoDesp = data.getStringExtra(BuscarFinActivity.EXTRA_TIPO_DESP_BUSCA);
+            String despDescr = data.getStringExtra(BuscarFinActivity.EXTRA_DESCR_DESP_BUSCA);
+            String fontDesp = data.getStringExtra(BuscarFinActivity.EXTRA_FONT_DESP_BUSCA);
+            String dataDesp = data.getStringExtra(BuscarFinActivity.EXTRA_DURATION_BUSCA);
+
         } else {
             Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //solcita permissao
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -187,5 +168,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-//fim solcita permissao
 }
