@@ -17,7 +17,6 @@ public class ResultadosDialogFragment extends DialogFragment {
 
     private List<FinModal> resultados;
 
-    // Método estático para criar uma nova instância do fragmento
     public static ResultadosDialogFragment newInstance(List<FinModal> resultados) {
         ResultadosDialogFragment fragment = new ResultadosDialogFragment();
         fragment.resultados = resultados;
@@ -43,7 +42,6 @@ public class ResultadosDialogFragment extends DialogFragment {
 
         builder.setMessage(stringBuilder.toString());
 
-        // Adicione um botão de OK ao AlertDialog
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

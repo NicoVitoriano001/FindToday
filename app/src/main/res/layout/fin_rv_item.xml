@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--text view for our valor desp-->
         <TextView
             android:id="@+id/idTVValorDesp"
             android:layout_width="match_parent"
@@ -22,7 +21,6 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <!--text view for our course name-->
         <TextView
             android:id="@+id/idTVTipoDesp"
             android:layout_width="match_parent"
@@ -39,7 +37,6 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <!--text view for our course description-->
         <TextView
             android:id="@+id/idTVDespDescr"
             android:layout_width="match_parent"

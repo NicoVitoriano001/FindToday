@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
 // fim solcita permissao
 
-        FinRV = findViewById(R.id.idRVFin);
+        FinRV = findViewById(R.id.idRVFin); //referencia para o xml recyclerview
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, ADD_DESP_REQUEST);
             }
         });
-
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
