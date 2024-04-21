@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.gtappdevelopers.findtoday.FinModal;
-
 import java.util.List;
 
 public class ResultadosDialogFragment extends DialogFragment {

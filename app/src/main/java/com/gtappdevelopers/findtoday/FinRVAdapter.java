@@ -96,6 +96,9 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+
+
 }
 
 

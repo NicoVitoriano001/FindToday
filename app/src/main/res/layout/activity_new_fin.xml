@@ -8,7 +8,6 @@
     tools:context=".NewFinActivity">
 
 
-    <!--edit text for our VALOR-->
     <EditText
         android:id="@+id/idEdtValorDesp"
         android:inputType="numberDecimal"
