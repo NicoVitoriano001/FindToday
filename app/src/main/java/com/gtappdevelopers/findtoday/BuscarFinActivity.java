@@ -31,7 +31,7 @@ public class BuscarFinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca_fin);
 
-        dao = FinDatabase.getInstance(this).Dao();
+        dao = FinDatabase.getInstance(this).Dao(); //métodos geralemente ẽ minusculo
 
         //tela inicial dos novos
         valorDespEdtBusca = findViewById(R.id.idEdtValorDespBuscar);
@@ -64,6 +64,7 @@ public class BuscarFinActivity extends AppCompatActivity {
     }
 
     private void exibirResultados(List<FinModal> resultados) {
+
         ResultadosDialogFragment dialogFragment = ResultadosDialogFragment.newInstance(resultados);
         dialogFragment.show(getSupportFragmentManager(), "resultados_dialog");
     }
