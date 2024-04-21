@@ -42,6 +42,11 @@ public class FinRepository {
         return allDesp;
     }
 
+    // Método para realizar a busca de despesas
+    public LiveData<List<FinModal>> buscaDesp(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
+        return dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
+    }
+
     //we are creating a async task method to insert new course.
     private static class InsertFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;

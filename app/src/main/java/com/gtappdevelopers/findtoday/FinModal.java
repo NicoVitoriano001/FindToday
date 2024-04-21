@@ -7,19 +7,12 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "fin_table")
 
 public class FinModal {
-    //below line is to auto increment id for each course.
     @PrimaryKey(autoGenerate = true)
-    //variable for our id.
     private int id;
-    //below line is a variable for course name.
     private String valorDesp;
-    //below line is use for course description.
     private String tipoDesp;
-    //below line is use for course description.
     private String fontDesp;
-    //below line is use for course description.
     private String despDescr;
-    //below line is use for course duration.
     private String dataDesp;
 
     //below line we are creating constructor class.

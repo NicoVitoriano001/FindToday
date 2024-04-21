@@ -25,13 +25,12 @@ public class BuscarFinActivity extends AppCompatActivity {
 
     private Dao dao;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca_fin);
 
-        dao = FinDatabase.getInstance(this).Dao(); //métodos geralemente ẽ minusculo
+        dao = FinDatabase.getInstance(this).Dao();
 
         //tela inicial dos novos
         valorDespEdtBusca = findViewById(R.id.idEdtValorDespBuscar);
