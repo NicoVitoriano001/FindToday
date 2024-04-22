@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context=".BuscarFinActivity">
 
-
-    <!--edit text for our VALOR-->
     <EditText
         android:id="@+id/idEdtValorDespBuscar"
         android:inputType="numberDecimal"
@@ -68,6 +66,4 @@
         android:padding="5dp"
         android:text="Buscar"
         android:textAllCaps="false" />
-
-
 </LinearLayout>

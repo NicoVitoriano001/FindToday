@@ -3,10 +3,12 @@ package com.gtappdevelopers.findtoday;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-//below line is for setting table name.
+import android.os.Parcel;
+import android.os.Parcelable;
+
 @Entity(tableName = "fin_table")
 
-public class FinModal {
+public class FinModal implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String valorDesp;
@@ -15,9 +17,6 @@ public class FinModal {
     private String despDescr;
     private String dataDesp;
 
-    //below line we are creating constructor class.
-    //inside constructor class we are not passing our id because it is incrementing automatically
-    //sequencia abaixo é exibido no main getdesall
     public FinModal(String valorDesp, String tipoDesp, String fontDesp,  String despDescr, String dataDesp) {
         this.valorDesp = valorDesp;
         this.tipoDesp = tipoDesp;
@@ -60,4 +59,42 @@ public class FinModal {
     public void setDataDesp(String dataDesp) {
         this.dataDesp = dataDesp;
     }
+
+
+    protected FinModal(Parcel in) {
+        id = in.readInt();
+        valorDesp = in.readString();
+        tipoDesp = in.readString();
+        fontDesp = in.readString();
+        despDescr = in.readString();
+        dataDesp = in.readString();
+    }
+
+    public static final Creator<FinModal> CREATOR = new Creator<FinModal>() {
+        @Override
+        public FinModal createFromParcel(Parcel in) {
+            return new FinModal(in);
+        }
+
+        @Override
+        public FinModal[] newArray(int size) {
+            return new FinModal[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(valorDesp);
+        dest.writeString(tipoDesp);
+        dest.writeString(fontDesp);
+        dest.writeString(despDescr);
+        dest.writeString(dataDesp);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
 }

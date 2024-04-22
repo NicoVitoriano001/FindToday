@@ -21,7 +21,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //creating a variables for our recycler view.
-    private RecyclerView FinRV;
     private ViewModal viewmodal;
     private static final int ADD_DESP_REQUEST = 1;
     private static final int EDIT_DESP_REQUEST = 2;
@@ -47,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         }
 // fim solcita permissao
 
-        FinRV = findViewById(R.id.idRVFin); //referencia para o xml recyclerview
-
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView FinRV = findViewById(R.id.idRVFin);
         FinRV.setLayoutManager(new LinearLayoutManager(this));
         FinRV.setHasFixedSize(true);
         final FinRVAdapter adapter = new FinRVAdapter();
@@ -124,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_LONG).show();
 
         } else if (requestCode == EDIT_DESP_REQUEST && resultCode == RESULT_OK) {
-            int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1); //NOVO 1-, SE NAO, RETORNA VALOR DO ID
+            int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1);
             if (id == -1) {
                 Toast.makeText(this, "Registro não pode ser atualizado.", Toast.LENGTH_LONG).show();
                 return;
@@ -140,11 +138,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_SHORT).show();
 
         } else if (requestCode == SEARCH_DESP_REQUEST && resultCode == RESULT_OK) {
-            String valorDesp = data.getStringExtra(BuscarFinActivity.EXTRA_VALOR_DESP_BUSCA);
-            String tipoDesp = data.getStringExtra(BuscarFinActivity.EXTRA_TIPO_DESP_BUSCA);
-            String despDescr = data.getStringExtra(BuscarFinActivity.EXTRA_DESCR_DESP_BUSCA);
-            String fontDesp = data.getStringExtra(BuscarFinActivity.EXTRA_FONT_DESP_BUSCA);
-            String dataDesp = data.getStringExtra(BuscarFinActivity.EXTRA_DURATION_BUSCA);
+
 
         } else {
             Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_SHORT).show();
