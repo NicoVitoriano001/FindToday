@@ -2,7 +2,6 @@ package com.gtappdevelopers.findtoday;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -46,7 +45,7 @@ public class FinModal implements Parcelable {
     public String getFontDesp() {
         return fontDesp;
     }
-    public void getFontDesp(String fontDesp) {
+    public void setFontDesp(String fontDesp) {
         this.fontDesp = fontDesp;
     }
 
@@ -59,7 +58,6 @@ public class FinModal implements Parcelable {
     public void setDataDesp(String dataDesp) {
         this.dataDesp = dataDesp;
     }
-
 
     protected FinModal(Parcel in) {
         id = in.readInt();

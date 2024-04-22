@@ -28,13 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int SEARCH_DESP_REQUEST = 3; // Define um requestCode para BuscarFinActivity
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Verifica as permissões antes de fazer o backup do banco de dados
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
         } else {
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
             }
         }
-// fim solcita permissao
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
@@ -105,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
 
@@ -144,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
         }
-
-
 
     }
 

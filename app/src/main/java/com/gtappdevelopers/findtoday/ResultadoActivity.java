@@ -1,14 +1,12 @@
 package com.gtappdevelopers.findtoday;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +52,25 @@ public class ResultadoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MainActivity.EDIT_DESP_REQUEST && resultCode == RESULT_OK && data != null) {
+            int id = data.getIntExtra(NewFinActivity.EXTRA_ID, -1);
+            if (id != -1) {
+                String valorDesp = data.getStringExtra(NewFinActivity.EXTRA_VALOR_DESP);
+                String tipoDesp = data.getStringExtra(NewFinActivity.EXTRA_TIPO_DESP);
+                String fontDesp = data.getStringExtra(NewFinActivity.EXTRA_FONT_DESP);
+                String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
+                String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
+
+                // Atualizar o item na lista da RecyclerView
+                adapter.updateItem(id, valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
+            }
+        }
     }
 
 
