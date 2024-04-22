@@ -19,9 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuscarFinActivity extends AppCompatActivity {
-    //creating a variables for our button and edittext.
-
-    //creating a constant string variable for our course name, description and duration.
     public static final String EXTRA_ID_BUSCA = "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID_BUSCA";
     public static final String EXTRA_VALOR_DESP_BUSCA = "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP_BUSCA";
     public static final String EXTRA_TIPO_DESP_BUSCA = "com.gtappdevelopers.gfgroomdatabase.EXTRA_TIPO_DESP_BUSCA";
@@ -32,7 +29,6 @@ public class BuscarFinActivity extends AppCompatActivity {
     private EditText valorDespEdtBusca, tipoDespEdtBusca, fontDespEdtBusca, despDescrEdtBusca, dataDespEdtBusca;
     private Button FinBtnBusca;
     private FinRVAdapter adapter; // Adaptador para RecyclerView
-
     private RecyclerView idRVRetorno; // Adicione esta linha
 
     @Override
@@ -78,7 +74,6 @@ public class BuscarFinActivity extends AppCompatActivity {
             ResultadosDialogFragment dialogFragment = ResultadosDialogFragment.newInstance(resultados);
             dialogFragment.show(getSupportFragmentManager(), "resultados_dialog");
     }
-
 
 
 }

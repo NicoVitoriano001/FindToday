@@ -1,14 +1,12 @@
 package com.gtappdevelopers.findtoday;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -82,21 +80,19 @@ public class NewFinActivity extends AppCompatActivity {
     private void saveFin(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
         //PASSA OS DADOS NOVOS/RECUPERADOS PARA SALVAR
         Intent data = new Intent();
-        data.putExtra(EXTRA_VALOR_DESP, valorDesp);
-        data.putExtra(EXTRA_TIPO_DESP, tipoDesp);
-        data.putExtra(EXTRA_FONT_DESP, fontDesp);
-        data.putExtra(EXTRA_DESCR_DESP, despDescr);
-        data.putExtra(EXTRA_DURATION, dataDesp);
+        data.putExtra(NewFinActivity.EXTRA_VALOR_DESP, valorDesp);
+        data.putExtra(NewFinActivity.EXTRA_TIPO_DESP, tipoDesp);
+        data.putExtra(NewFinActivity.EXTRA_FONT_DESP, fontDesp);
+        data.putExtra(NewFinActivity.EXTRA_DESCR_DESP, despDescr);
+        data.putExtra(NewFinActivity.EXTRA_DURATION, dataDesp);
 
-        int id = getIntent().getIntExtra(EXTRA_ID, -1);//SENDO NOVO -1, NAO SENDO PEGA ID
+        int id = getIntent().getIntExtra(NewFinActivity.EXTRA_ID, -1);
         if (id != -1) {
-            //in below line we are passing our id.
-            data.putExtra(EXTRA_ID, id);
+            data.putExtra(NewFinActivity.EXTRA_ID, id);
         }
-        /*os dados do curso são empacotados em um Intent e enviados de volta para a atividade
-        anterior usando setResult(RESULT_OK, data)*/
         setResult(RESULT_OK, data);
-        //displaying a toast message after adding the data
         Toast.makeText(this, "Registro foi salvo no Database -EDIT.", Toast.LENGTH_LONG).show();
+        finish();
     }
+
 }

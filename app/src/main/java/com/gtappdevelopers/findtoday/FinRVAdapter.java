@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder> {
 
-    //creating a variable for on item click listner.
     private OnItemClickListener listener;
 
-    //creating a constructor class for our adapter class.
     FinRVAdapter() {
         super(DIFF_CALLBACK);
     }
 
-    //creating a call back for item of recycler view.
     private static final DiffUtil.ItemCallback<FinModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<FinModal>() {
         @Override
         public boolean areItemsTheSame(FinModal oldItem, FinModal newItem) {
@@ -97,8 +94,19 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
         this.listener = listener;
     }
 
-
+    public void updateItem(int id, String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
+        for (int i = 0; i < getCurrentList().size(); i++) {
+            FinModal item = getCurrentList().get(i);
+            if (item.getId() == id) {
+                item.setValorDesp(valorDesp);
+                item.setTipoDesp(tipoDesp);
+                item.setFontDesp(fontDesp);
+                item.setDespDescr(despDescr);
+                item.setDataDesp(dataDesp);
+                notifyItemChanged(i);
+                break;
+            }
+        }
+    }
 
 }
-
-
