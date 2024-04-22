@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     //creating a variables for our recycler view.
     private ViewModal viewmodal;
     private static final int ADD_DESP_REQUEST = 1;
-    private static final int EDIT_DESP_REQUEST = 2;
+    public static final int EDIT_DESP_REQUEST = 2;
+    //private static final int EDIT_DESP_REQUEST = 2;
     private static final int SEARCH_DESP_REQUEST = 3; // Define um requestCode para BuscarFinActivity
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
@@ -103,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_DESP_REQUEST);
             }
         });
+
+
     }
 
 
@@ -135,14 +138,15 @@ public class MainActivity extends AppCompatActivity {
             FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             model.setId(id);
             viewmodal.update(model);
-            Toast.makeText(this, "Registro salvo.", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, "Registro atualizado.", Toast.LENGTH_SHORT).show();
         } else if (requestCode == SEARCH_DESP_REQUEST && resultCode == RESULT_OK) {
-
-
+            // Código para lidar com a resposta da BuscarFinActivity
         } else {
-            Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
         }
+
+
+
     }
 
     @Override
