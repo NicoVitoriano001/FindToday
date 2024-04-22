@@ -13,6 +13,7 @@
         <activity android:name=".BuscarFinActivity"></activity>
         <activity android:name=".ResultadoActivity"></activity>
         <activity android:name=".NewFinActivity"></activity>
+        <activity android:name=".ResumoDespActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

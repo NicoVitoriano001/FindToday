@@ -12,7 +12,8 @@ import java.time.format.DateTimeFormatter;
 
 public class NewFinActivity extends AppCompatActivity {
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
-    private Button FinBtn;
+    private Button FinBtnSave;
+    private Button FinBtnConsult;
     //creating a constant string variable for our course name, description and duration.
     public static final String EXTRA_ID = "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID";
     public static final String EXTRA_VALOR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
@@ -36,7 +37,8 @@ public class NewFinActivity extends AppCompatActivity {
         fontDespEdt = findViewById(R.id.idEdtFontDesp);
         despDescrEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
-        FinBtn = findViewById(R.id.idBtnSaveDesp);
+        FinBtnSave = findViewById(R.id.idBtnSaveDesp);
+        FinBtnConsult = findViewById(R.id.idBtnConsultarResumo);
         String dataHoraAtual = getDataHoraAtual();
         dataDespEdt.setText(dataHoraAtual);
 
@@ -51,9 +53,9 @@ public class NewFinActivity extends AppCompatActivity {
             despDescrEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
             dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
-        //configurando um ouvinte de clique para o botão FinBtn. Quando o botão é clicado,
+        //configurando um ouvinte de clique para o botão FinBtnSave. Quando o botão é clicado,
         // o código dentro do método onClick() é executado.
-        FinBtn.setOnClickListener(new View.OnClickListener() {//botao de salvar
+        FinBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //getting text value from edittext and validating if the text fields are empty or not.
@@ -72,6 +74,19 @@ public class NewFinActivity extends AppCompatActivity {
                 saveFin(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             }
         });
+
+
+        FinBtnConsult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Abrir a activity_resumo_desp.xml
+                Intent intent = new Intent(NewFinActivity.this, ResumoDespActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     private void saveFin(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
