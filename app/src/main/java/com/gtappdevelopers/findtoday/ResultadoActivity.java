@@ -2,17 +2,21 @@ package com.gtappdevelopers.findtoday;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResultadoActivity extends AppCompatActivity {
     private RecyclerView idRVRetorno;
     private FinRVAdapter adapter;
+    private ViewModal viewmodal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,9 @@ public class ResultadoActivity extends AppCompatActivity {
         adapter = new FinRVAdapter();
         idRVRetorno.setLayoutManager(new LinearLayoutManager(this));
         idRVRetorno.setAdapter(adapter);
+
+        viewmodal = new ViewModelProvider(this).get(ViewModal.class); // Inicializar viewmodal
+
 
         ArrayList<Parcelable> parcelableList = getIntent().getParcelableArrayListExtra("resultados");
         List<FinModal> resultados = new ArrayList<>();
@@ -37,7 +44,6 @@ public class ResultadoActivity extends AppCompatActivity {
             adapter.submitList(resultados);
         }
 
-        // No método onCreate da ResultadoActivity
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(FinModal model) {
@@ -67,8 +73,17 @@ public class ResultadoActivity extends AppCompatActivity {
                 String despDescr = data.getStringExtra(NewFinActivity.EXTRA_DESCR_DESP);
                 String dataDesp = data.getStringExtra(NewFinActivity.EXTRA_DURATION);
 
+                FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
+                model.setId(id);
+                viewmodal.update(model);
+                Toast.makeText(this, "Registro atualizado.", Toast.LENGTH_SHORT).show();
                 // Atualizar o item na lista da RecyclerView
                 adapter.updateItem(id, valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
+                finish();
+
+                // Inicie a MainActivity após a conclusão da edição
+                Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         }
     }

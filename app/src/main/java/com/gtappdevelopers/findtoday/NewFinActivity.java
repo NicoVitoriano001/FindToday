@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class NewFinActivity extends AppCompatActivity {
-    //creating a variables for our button and edittext.
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
     private Button FinBtn;
     //creating a constant string variable for our course name, description and duration.
@@ -22,7 +21,6 @@ public class NewFinActivity extends AppCompatActivity {
     public static final String EXTRA_DESCR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DESP_DESCR";
     public static final String EXTRA_DURATION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
 
-//passar data e hora para toast
     public String getDataHoraAtual() {
         LocalDateTime dataHoraAtual = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -39,7 +37,6 @@ public class NewFinActivity extends AppCompatActivity {
         despDescrEdt = findViewById(R.id.idEdtDespDescr);
         dataDespEdt = findViewById(R.id.idEdtDataDesp);
         FinBtn = findViewById(R.id.idBtnSaveDesp);
-        // Prencher dataHora automatico. Inicializando os componentes da tela
         String dataHoraAtual = getDataHoraAtual();
         dataDespEdt.setText(dataHoraAtual);
 
