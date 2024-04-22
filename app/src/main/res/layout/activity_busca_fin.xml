@@ -66,6 +66,4 @@
         android:padding="5dp"
         android:text="Buscar"
         android:textAllCaps="false" />
-
-
 </LinearLayout>

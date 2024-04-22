@@ -1,18 +1,21 @@
 package com.gtappdevelopers.findtoday;
 
+import com.gtappdevelopers.findtoday.ResultadoActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuscarFinActivity extends AppCompatActivity {
@@ -28,11 +31,14 @@ public class BuscarFinActivity extends AppCompatActivity {
     private Dao dao;
     private EditText valorDespEdtBusca, tipoDespEdtBusca, fontDespEdtBusca, despDescrEdtBusca, dataDespEdtBusca;
     private Button FinBtnBusca;
+    private FinRVAdapter adapter; // Adaptador para RecyclerView
+
+    private RecyclerView idRVRetorno; // Adicione esta linha
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busca_fin);
+        setContentView(R.layout.activity_busca_fin); // Defina o layout para activity_busca_fin.xml
 
         dao = FinDatabase.getInstance(this).Dao();
 
@@ -51,21 +57,24 @@ public class BuscarFinActivity extends AppCompatActivity {
                 String fontDesp = fontDespEdtBusca.getText().toString();
                 String despDescr = despDescrEdtBusca.getText().toString();
                 String dataDesp = dataDespEdtBusca.getText().toString();
-                Toast.makeText(getApplicationContext(), "YYVVVV.", Toast.LENGTH_SHORT).show();
 
-                dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp).observe(BuscarFinActivity.this, new Observer<List<FinModal>>() {
-                    @Override
-                    public void onChanged(List<FinModal> finModals) {
-                        exibirResultados(finModals);
-                    }
-                });
+                // Chame o método de busca no DAO e observe os resultados
+                dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp)
+                        .observe(BuscarFinActivity.this, new Observer<List<FinModal>>() {
+                            @Override
+                            public void onChanged(List<FinModal> finModals) {
+                                Intent intent = new Intent(BuscarFinActivity.this, ResultadoActivity.class);
+                                intent.putExtra("resultados", new ArrayList<>(finModals));
+                                startActivity(intent);
+                            }
+                        });
             }
         });
     }
 
 
-    private void exibirResultados(List<FinModal> resultados) {
 
+    private void exibirResultados(List<FinModal> resultados) {
             ResultadosDialogFragment dialogFragment = ResultadosDialogFragment.newInstance(resultados);
             dialogFragment.show(getSupportFragmentManager(), "resultados_dialog");
     }
@@ -73,8 +82,3 @@ public class BuscarFinActivity extends AppCompatActivity {
 
 
 }
-
-
-
-
-

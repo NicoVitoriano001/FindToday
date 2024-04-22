@@ -68,5 +68,14 @@
         android:text="Salvar Registro"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/idBtnConsultarDesp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:text="Consultar Registro"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>

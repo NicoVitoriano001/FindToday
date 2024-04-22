@@ -138,11 +138,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Registro salvo.", Toast.LENGTH_SHORT).show();
 
         } else if (requestCode == SEARCH_DESP_REQUEST && resultCode == RESULT_OK) {
-            String valorDesp = data.getStringExtra(BuscarFinActivity.EXTRA_VALOR_DESP_BUSCA);
-            String tipoDesp = data.getStringExtra(BuscarFinActivity.EXTRA_TIPO_DESP_BUSCA);
-            String despDescr = data.getStringExtra(BuscarFinActivity.EXTRA_DESCR_DESP_BUSCA);
-            String fontDesp = data.getStringExtra(BuscarFinActivity.EXTRA_FONT_DESP_BUSCA);
-            String dataDesp = data.getStringExtra(BuscarFinActivity.EXTRA_DURATION_BUSCA);
+
 
         } else {
             Toast.makeText(this, "Registro não salvo.", Toast.LENGTH_SHORT).show();
