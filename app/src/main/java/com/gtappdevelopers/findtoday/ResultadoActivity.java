@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,7 @@ public class ResultadoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retorno_rv);
+        setContentView(R.layout.activity_result_consult_rv);
 
         // Inicializar RecyclerView
         idRVRetorno = findViewById(R.id.idRVRetorno);
@@ -58,6 +61,25 @@ public class ResultadoActivity extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton fabReturn = findViewById(R.id.idFABresultadoConsultReturn);
+        fabReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Encerra a atividade atual e retorna à atividade anterior
+            }
+        });
+
+
+        FloatingActionButton fabReturnHome = findViewById(R.id.idFABresultadoConsultReturnHome);
+        fabReturnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -76,14 +98,14 @@ public class ResultadoActivity extends AppCompatActivity {
                 FinModal model = new FinModal(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
                 model.setId(id);
                 viewmodal.update(model);
-                Toast.makeText(this, "Registro atualizado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Registro com busca atualizado.", Toast.LENGTH_SHORT).show();
                 // Atualizar o item na lista da RecyclerView
                 adapter.updateItem(id, valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
-                finish();
+                //finish();
 
                 // Inicie a MainActivity após a conclusão da edição
-                Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
+                //startActivity(intent);
             }
         }
     }

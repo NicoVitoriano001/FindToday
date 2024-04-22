@@ -27,7 +27,7 @@ public class BuscarFinActivity extends AppCompatActivity {
     public static final String EXTRA_DURATION_BUSCA = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION_BUSCA";
     private Dao dao;
     private EditText valorDespEdtBusca, tipoDespEdtBusca, fontDespEdtBusca, despDescrEdtBusca, dataDespEdtBusca;
-    private Button FinBtnBusca;
+    private Button FinBtnSaveBusca;
     private FinRVAdapter adapter; // Adaptador para RecyclerView
     private RecyclerView idRVRetorno; // Adicione esta linha
 
@@ -43,9 +43,9 @@ public class BuscarFinActivity extends AppCompatActivity {
         fontDespEdtBusca = findViewById(R.id.idEdtFontDespBuscar);
         despDescrEdtBusca = findViewById(R.id.idEdtDespDescrBuscar);
         dataDespEdtBusca = findViewById(R.id.idEdtDataDespBuscar);
-        FinBtnBusca = findViewById(R.id.idBtnBuscarDesp);
+        FinBtnSaveBusca = findViewById(R.id.idBtnBuscarDesp);
 
-        FinBtnBusca.setOnClickListener(new View.OnClickListener() {
+        FinBtnSaveBusca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String valorDesp = valorDespEdtBusca.getText().toString();
@@ -66,13 +66,6 @@ public class BuscarFinActivity extends AppCompatActivity {
                         });
             }
         });
-    }
-
-
-
-    private void exibirResultados(List<FinModal> resultados) {
-            ResultadosDialogFragment dialogFragment = ResultadosDialogFragment.newInstance(resultados);
-            dialogFragment.show(getSupportFragmentManager(), "resultados_dialog");
     }
 
 
