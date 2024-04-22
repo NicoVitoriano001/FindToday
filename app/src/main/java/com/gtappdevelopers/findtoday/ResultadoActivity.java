@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -26,7 +27,6 @@ public class ResultadoActivity extends AppCompatActivity {
         idRVRetorno.setLayoutManager(new LinearLayoutManager(this));
         idRVRetorno.setAdapter(adapter);
 
-        // Obter os resultados passados da tela anterior
         ArrayList<Parcelable> parcelableList = getIntent().getParcelableArrayListExtra("resultados");
         List<FinModal> resultados = new ArrayList<>();
 
@@ -36,9 +36,24 @@ public class ResultadoActivity extends AppCompatActivity {
                     resultados.add((FinModal) parcelable);
                 }
             }
-            // Atualize o adaptador com os resultados
             adapter.submitList(resultados);
         }
+
+        // No método onCreate da ResultadoActivity
+        adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(FinModal model) {
+                Intent intent = new Intent(ResultadoActivity.this, NewFinActivity.class);
+                intent.putExtra(NewFinActivity.EXTRA_ID, model.getId());
+                intent.putExtra(NewFinActivity.EXTRA_VALOR_DESP, model.getValorDesp());
+                intent.putExtra(NewFinActivity.EXTRA_TIPO_DESP, model.getTipoDesp());
+                intent.putExtra(NewFinActivity.EXTRA_FONT_DESP, model.getFontDesp());
+                intent.putExtra(NewFinActivity.EXTRA_DESCR_DESP, model.getDespDescr());
+                intent.putExtra(NewFinActivity.EXTRA_DURATION, model.getDataDesp());
+                startActivityForResult(intent, MainActivity.EDIT_DESP_REQUEST);
+            }
+        });
+
     }
 
 
