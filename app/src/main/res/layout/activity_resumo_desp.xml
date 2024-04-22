@@ -85,7 +85,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/abc_vector_test"
+        android:src="@drawable/ic_home"
         app:tint="@color/white" />
 
 </RelativeLayout>

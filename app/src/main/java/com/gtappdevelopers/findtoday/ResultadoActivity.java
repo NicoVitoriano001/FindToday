@@ -65,10 +65,10 @@ public class ResultadoActivity extends AppCompatActivity {
         fabReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish(); // Encerra a atividade atual e retorna à atividade anterior
             }
         });
+
 
         FloatingActionButton fabReturnHome = findViewById(R.id.idFABresultadoConsultReturnHome);
         fabReturnHome.setOnClickListener(new View.OnClickListener() {
