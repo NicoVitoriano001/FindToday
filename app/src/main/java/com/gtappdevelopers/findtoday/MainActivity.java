@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BuscarFinActivity.class);
-                startActivityForResult(intent, SEARCH_DESP_REQUEST); // Use o requestCode SEARCH_DESP_REQUEST
+                startActivityForResult(intent, SEARCH_DESP_REQUEST);
             }
         });
 
@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
             model.setId(id);
             viewmodal.update(model);
             Toast.makeText(this, "Registro atualizado.", Toast.LENGTH_SHORT).show();
+
         } else if (requestCode == SEARCH_DESP_REQUEST && resultCode == RESULT_OK) {
             // Código para lidar com a resposta da BuscarFinActivity
         } else {
