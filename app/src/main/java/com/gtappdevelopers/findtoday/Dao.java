@@ -28,7 +28,7 @@ public interface Dao {
             "AND tipoDesp LIKE '%' || :tipoDesp || '%' " +
             "AND fontDesp LIKE '%' || :fontDesp || '%' " +
             "AND despDescr LIKE '%' || :despDescr || '%' " +
-            "AND dataDesp LIKE '%' || :dataDesp || '%'")
+            "AND dataDesp LIKE '%' || :dataDesp || '%' ORDER BY dataDesp DESC")
     LiveData<List<FinModal>> buscaDesp(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp);
 
 }
