@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        new PopulateDbAsyncTask(FinDatabase.getInstance(this), this).execute();
+
+
     }
 
     @Override
