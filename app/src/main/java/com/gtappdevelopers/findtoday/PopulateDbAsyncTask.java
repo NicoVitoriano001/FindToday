@@ -23,7 +23,6 @@ class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
-            // Ler o arquivo CSV e inserir os dados no banco de dados
             InputStream inputStream = context.getAssets().open("Sheet80.csv");
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             CSVReader reader = new CSVReader(inputStreamReader);

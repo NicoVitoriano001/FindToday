@@ -24,6 +24,10 @@ public interface Dao {
     @Query("SELECT * FROM fin_table ORDER BY dataDesp DESC, tipoDesp ASC")
     LiveData<List<FinModal>> getallDesp();
 
+    @Query("SELECT * FROM fin_table")
+    List<FinModal> getAll(); // Retorna todos os registros da tabela fin_table
+
+
     @Query("SELECT * FROM fin_table WHERE valorDesp LIKE '%' || :valorDesp || '%' " +
             "AND tipoDesp LIKE '%' || :tipoDesp || '%' " +
             "AND fontDesp LIKE '%' || :fontDesp || '%' " +

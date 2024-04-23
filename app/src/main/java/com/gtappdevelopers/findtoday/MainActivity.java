@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//populou o banco
         new PopulateDbAsyncTask(FinDatabase.getInstance(this), this).execute();
 
 
