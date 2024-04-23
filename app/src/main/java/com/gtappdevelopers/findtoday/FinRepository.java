@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class FinRepository {
-    //below line is the create a variable for dao and list for all fin.
     private Dao dao;
     private LiveData<List<FinModal>> allDesp;
 
@@ -40,11 +39,6 @@ public class FinRepository {
     //below method is to read all the courses.
     public LiveData<List<FinModal>> getallDesp() {
         return allDesp;
-    }
-
-    // Método para realizar a busca de despesas
-    public LiveData<List<FinModal>> buscaDesp(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
-        return dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
     }
 
     //we are creating a async task method to insert new course.

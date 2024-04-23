@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +31,6 @@ public class ResultadoActivity extends AppCompatActivity {
         idRVRetorno.setAdapter(adapter);
 
         viewmodal = new ViewModelProvider(this).get(ViewModal.class); // Inicializar viewmodal
-
 
         ArrayList<Parcelable> parcelableList = getIntent().getParcelableArrayListExtra("resultados");
         List<FinModal> resultados = new ArrayList<>();
@@ -69,7 +66,6 @@ public class ResultadoActivity extends AppCompatActivity {
             }
         });
 
-
         FloatingActionButton fabReturnHome = findViewById(R.id.idFABresultadoConsultReturnHome);
         fabReturnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +74,6 @@ public class ResultadoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 

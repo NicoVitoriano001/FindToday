@@ -1,7 +1,11 @@
 package com.gtappdevelopers.findtoday;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import androidx.core.app.ActivityCompat;
+
 
 public class NewFinActivity extends AppCompatActivity {
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
@@ -21,6 +27,8 @@ public class NewFinActivity extends AppCompatActivity {
     public static final String EXTRA_FONT_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_FONT_DESP";
     public static final String EXTRA_DESCR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DESP_DESCR";
     public static final String EXTRA_DURATION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
+    private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
+
 
     public String getDataHoraAtual() {
         LocalDateTime dataHoraAtual = LocalDateTime.now();
@@ -85,7 +93,22 @@ public class NewFinActivity extends AppCompatActivity {
             }
         });
 
-
+        Button bkpButton = findViewById(R.id.idBtnbkp);
+        bkpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(NewFinActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(NewFinActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
+                } else {
+                    boolean backupSuccess = DatabaseBackup.backupDatabase(NewFinActivity.this);
+                    if (backupSuccess) {
+                        Toast.makeText(NewFinActivity.this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(NewFinActivity.this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
     }
 
@@ -106,5 +129,23 @@ public class NewFinActivity extends AppCompatActivity {
         Toast.makeText(this, "Registro foi salvo no Database -EDIT.", Toast.LENGTH_LONG).show();
         finish();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                boolean backupSuccess = DatabaseBackup.backupDatabase(this);
+                if (backupSuccess) {
+                    Toast.makeText(this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
+                }
+            }   else {
+                Toast.makeText(this, "Permissão de escrita no armazenamento externo negada.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
 }

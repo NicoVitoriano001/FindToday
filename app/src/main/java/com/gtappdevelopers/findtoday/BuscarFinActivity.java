@@ -1,20 +1,13 @@
 package com.gtappdevelopers.findtoday;
 
-import com.gtappdevelopers.findtoday.ResultadoActivity;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +21,6 @@ public class BuscarFinActivity extends AppCompatActivity {
     private Dao dao;
     private EditText valorDespEdtBusca, tipoDespEdtBusca, fontDespEdtBusca, despDescrEdtBusca, dataDespEdtBusca;
     private Button FinBtnSaveBusca;
-    private FinRVAdapter adapter; // Adaptador para RecyclerView
-    private RecyclerView idRVRetorno; // Adicione esta linha
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
