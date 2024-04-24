@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,10 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_DESP_REQUEST);
             }
         });
-
-//populou o banco
-        new PopulateDbAsyncTask(FinDatabase.getInstance(this), this).execute();
-
 
     }
 
