@@ -21,11 +21,13 @@ public interface Dao {
     @Query("DELETE FROM fin_table")
     void deleteallDesp();
 
-    @Query("SELECT * FROM fin_table ORDER BY dataDesp DESC, tipoDesp ASC")
+    @Query("SELECT * FROM fin_table WHERE dataDesp LIKE '%2024%' ORDER BY dataDesp DESC, tipoDesp ASC")
     LiveData<List<FinModal>> getallDesp();
 
-    @Query("SELECT * FROM fin_table")
-    List<FinModal> getAll(); // Retorna todos os registros da tabela fin_table
+    /*
+    @Query("SELECT * FROM fin_table ORDER BY dataDesp DESC, tipoDesp ASC")
+    LiveData<List<FinModal>> getallDesp();
+    */
 
 
     @Query("SELECT * FROM fin_table WHERE valorDesp LIKE '%' || :valorDesp || '%' " +
