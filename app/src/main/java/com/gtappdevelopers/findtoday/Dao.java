@@ -21,7 +21,6 @@ public interface Dao {
     @Query("DELETE FROM fin_table")
     void deleteallDesp();
 
-
     @Query("SELECT * FROM fin_table WHERE dataDesp LIKE '%2024%' ORDER BY dataDesp DESC, tipoDesp ASC")
     LiveData<List<FinModal>> getallDesp();
 
