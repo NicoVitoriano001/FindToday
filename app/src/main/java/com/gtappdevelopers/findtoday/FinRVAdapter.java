@@ -8,6 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import android.graphics.Typeface;
+
+
 
 public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder> {
 
@@ -53,6 +57,25 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
         holder.fontDespTV.setText(model.getFontDesp());
         holder.despDescrTV.setText(model.getDespDescr());
         holder.dataDespTV.setText(model.getDataDesp());
+
+        // Verifique se o tipo de despesa é diferente de "CRED" e altere a cor do texto
+        if ("CRED".equalsIgnoreCase(model.getTipoDesp())) {
+            holder.valorDespTV.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.vermelho));
+            holder.valorDespTV.setTypeface(null, Typeface.BOLD);
+
+        }
+        else if ("-".equalsIgnoreCase(model.getTipoDesp())) {
+            holder.valorDespTV.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
+            holder.valorDespTV.setTypeface(null, Typeface.BOLD);
+
+        }
+        else {
+            // Se for "CRED", defina a cor do texto de volta para a cor padrão
+            holder.valorDespTV.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.vermelho));
+            holder.valorDespTV.setTypeface(null, Typeface.BOLD);
+
+        }
+
     }
 
     //creating a method to get fin modal for a specific position.
