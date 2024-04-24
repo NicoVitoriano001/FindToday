@@ -87,11 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//populou o banco
-        new PopulateDbAsyncTask(FinDatabase.getInstance(this), this).execute();
-
-
-    }
+ }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
