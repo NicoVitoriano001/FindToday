@@ -17,7 +17,7 @@
             android:id="@+id/idTVValorDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valorrrrrrr Desp"
+            android:text="Valor Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -33,7 +33,7 @@
             android:id="@+id/idTVFontDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Natureza Desp"
+            android:text="Fonte Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -41,7 +41,7 @@
             android:id="@+id/idTVDespDescr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Course Description"
+            android:text="Descr Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -49,7 +49,7 @@
             android:id="@+id/idTVdataDesp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data Despesa"
+            android:text="Data Desp"
             android:textColor="@color/black"
             android:textSize="15sp" />
     </LinearLayout>
