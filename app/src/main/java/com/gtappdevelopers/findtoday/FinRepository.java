@@ -41,7 +41,7 @@ public class FinRepository {
         return allDesp;
     }
 
-    //we are creating a async task method to insert new course.
+    //we are creating a async task method to insert new dados.
     private static class InsertFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
@@ -57,7 +57,7 @@ public class FinRepository {
         }
     }
 
-    //we are creating a async task method to update our course.
+    //we are creating a async task method to update our dados.
     private static class UpdateFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
@@ -73,7 +73,7 @@ public class FinRepository {
         }
     }
 
-    //we are creating a async task method to delete course.
+    //we are creating a async task method to delete dados.
     private static class DeleteFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
         private Dao dao;
 
@@ -89,7 +89,7 @@ public class FinRepository {
         }
     }
 
-    //we are creating a async task method to delete all courses.
+    //we are creating a async task method to delete all dados.
     private static class DeleteallDespAsyncTask extends AsyncTask<Void, Void, Void> {
         private Dao dao;
 
@@ -99,7 +99,7 @@ public class FinRepository {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            //on below line calling method to delete all courses.
+            //on below line calling method to delete all dados.
             dao.deleteallDesp();
             return null;
         }
