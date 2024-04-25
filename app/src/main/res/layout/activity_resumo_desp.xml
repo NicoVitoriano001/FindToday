@@ -1,91 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".ResumoDespActivity">
 
-    <!-- Janeiro -->
+    <!-- Layout horizontal para os EditTexts de Ano e Mês -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jan"
-            android:layout_weight="1"
-            android:textSize="16sp"/>
-
+        <!-- EditText para Ano -->
         <EditText
-            android:id="@+id/editTextJanAlim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/idEdtAno"
+            android:inputType="number"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:hint="ALIM"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Ano" />
 
+        <!-- EditText para Mês -->
         <EditText
-            android:id="@+id/editTextJanAlimAb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/idEdtMes"
+            android:inputType="number"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:hint="AB"/>
-
-        <EditText
-            android:id="@+id/editTextJanAlimDpub"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="D PUB"/>
-
-        <EditText
-            android:id="@+id/editTextJanOutr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="OUTR"/>
-
-        <EditText
-            android:id="@+id/editTextJanLazer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="LAZER"/>
-
-        <EditText
-            android:id="@+id/editTextJanSaud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="SAUD"/>
-
-        <EditText
-            android:id="@+id/editTextJanTrans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="TRANS"/>
-
-        <EditText
-            android:id="@+id/editTextJanCred"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="CRED"/>
-
-        <!-- Adicione mais EditTexts para os outros meses -->
+            android:layout_margin="10dp"
+            android:hint="Mês"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/idFABreturn"
-        android:layout_width="wrap_content"
+    <!-- Spinner para selecionar opções -->
+    <Spinner
+        android:id="@+id/spinnerOptions"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_home"
-        app:tint="@color/white" />
+        android:layout_margin="10dp"/>
 
-</RelativeLayout>
+
+    <Button
+        android:id="@+id/idBtnFazerResumo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:text="Resumo"
+        android:textAllCaps="false" />
+
+</LinearLayout>

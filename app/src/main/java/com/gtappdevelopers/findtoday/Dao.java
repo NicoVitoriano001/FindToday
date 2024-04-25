@@ -29,7 +29,6 @@ public interface Dao {
     LiveData<List<FinModal>> getallDesp();
     */
 
-
     @Query("SELECT * FROM fin_table WHERE valorDesp LIKE '%' || :valorDesp || '%' " +
             "AND tipoDesp LIKE '%' || :tipoDesp || '%' " +
             "AND fontDesp LIKE '%' || :fontDesp || '%' " +
