@@ -24,7 +24,6 @@ public class ResumoDespActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_desp);
 
-        // Inicialize o banco de dados
         finDatabase = FinDatabase.getInstance(getApplicationContext());
 
         spinnerOptions = findViewById(R.id.spinnerOptions);
@@ -57,13 +56,11 @@ public class ResumoDespActivity extends AppCompatActivity {
                 // Obtém uma instância do Dao
                 Dao dao = finDatabase.Dao();
 
-                // Obtém os valores selecionados do Spinner e dos EditTexts
                 //String selectedOption = options[spinnerOptions.getSelectedItemPosition()];
                 String ano = ((EditText) findViewById(R.id.idEdtAno)).getText().toString();
                 String mes = ((EditText) findViewById(R.id.idEdtMes)).getText().toString();
 
-                // Chama um método do Dao para buscar informações
-                LiveData<List<FinModal>> dados = dao.buscaDesp(null, null, null, null, null);
+                LiveData<List<FinModal>> dados = dao.buscaDesp("", "ALIM", "", "", ano);
                 // Cria e exibe o DialogFragment com os dados buscados
                 DialogFragment dialogFragment = new ResumoDialogFragment(dados);
                 dialogFragment.show(getSupportFragmentManager(), "ResultDialogFragment");
