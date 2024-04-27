@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultadoActivity extends AppCompatActivity {
+public class ResultadoBuscaActivity extends AppCompatActivity {
     private RecyclerView idRVRetorno;
     private FinRVAdapter adapter;
     private ViewModal viewmodal;
@@ -22,7 +22,7 @@ public class ResultadoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result_consult_rv);
+        setContentView(R.layout.activity_resultado_busca_rv);
 
         // Inicializar RecyclerView
         idRVRetorno = findViewById(R.id.idRVRetorno);
@@ -47,7 +47,7 @@ public class ResultadoActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(FinModal model) {
-                Intent intent = new Intent(ResultadoActivity.this, NewFinActivity.class);
+                Intent intent = new Intent(ResultadoBuscaActivity.this, NewFinActivity.class);
                 intent.putExtra(NewFinActivity.EXTRA_ID, model.getId());
                 intent.putExtra(NewFinActivity.EXTRA_VALOR_DESP, model.getValorDesp());
                 intent.putExtra(NewFinActivity.EXTRA_TIPO_DESP, model.getTipoDesp());
@@ -70,7 +70,7 @@ public class ResultadoActivity extends AppCompatActivity {
         fabReturnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
+                Intent intent = new Intent(ResultadoBuscaActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -94,12 +94,11 @@ public class ResultadoActivity extends AppCompatActivity {
                 model.setId(id);
                 viewmodal.update(model);
                 Toast.makeText(this, "Registro com busca atualizado.", Toast.LENGTH_SHORT).show();
-                // Atualizar o item na lista da RecyclerView
                 adapter.updateItem(id, valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
                 //finish();
 
                 // Inicie a MainActivity após a conclusão da edição
-                //Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
+                //Intent intent = new Intent(ResultadoBuscaActivity.this, MainActivity.class);
                 //startActivity(intent);
             }
         }

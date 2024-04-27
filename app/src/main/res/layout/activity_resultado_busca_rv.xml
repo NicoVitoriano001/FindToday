@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".BuscarFinActivity">
+    <!--android:background="#CEE3EA" > -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVRetorno"
