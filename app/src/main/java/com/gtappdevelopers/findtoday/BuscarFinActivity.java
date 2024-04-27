@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +72,17 @@ public class BuscarFinActivity extends AppCompatActivity {
                         });
             }
         });
+
+
+        FloatingActionButton fabvoltardaBusca = findViewById(R.id.idFABvoltardaBusca);
+        fabvoltardaBusca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Encerra a atividade atual e retorna à atividade anterior
+            }
+        });
+
+
     }
 
 
