@@ -2,6 +2,7 @@ package com.gtappdevelopers.findtoday;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+// CONFIRMA EXCLUSAO
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -67,11 +69,24 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                viewmodal.delete(adapter.getDespAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(MainActivity.this, "Registro Deletado.", Toast.LENGTH_LONG).show();
+                int position = viewHolder.getAdapterPosition();
+                FinModal itemToDelete = adapter.getDespAt(position);
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Confirmar Exclusão")
+                        .setMessage("Você tem certeza que deseja deletar este registro?")
+                        .setPositiveButton("Sim", (dialog, which) -> {
+                            viewmodal.delete(itemToDelete); // Deleta o item se o usuário confirmar
+                            Toast.makeText(MainActivity.this, "Registro Deletado.", Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("Não", (dialog, which) -> {
+                            adapter.notifyItemChanged(position); // Reverte a exclusão se o usuário cancelar
+                            Toast.makeText(MainActivity.this, "Exclusão Cancelada.", Toast.LENGTH_SHORT).show();
+                        })
+                        .show();
             }
         }).attachToRecyclerView(FinRV);
-
+//FIM CONFIRMA EXCLUSAO
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(FinModal model) {
@@ -85,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_DESP_REQUEST);
             }
         });
+
+
+
+
 
     }
 

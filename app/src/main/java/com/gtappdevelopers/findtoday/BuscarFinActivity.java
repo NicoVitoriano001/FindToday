@@ -1,8 +1,8 @@
 package com.gtappdevelopers.findtoday;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +25,7 @@ public class BuscarFinActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busca_fin); // Defina o layout para activity_busca_fin.xml
+        setContentView(R.layout.activity_busca_fin);
 
         dao = FinDatabase.getInstance(this).Dao();
 
@@ -45,14 +45,26 @@ public class BuscarFinActivity extends AppCompatActivity {
                 String despDescr = despDescrEdtBusca.getText().toString();
                 String dataDesp = dataDespEdtBusca.getText().toString();
 
-                // Chame o método de busca no DAO e observe os resultados
                 dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp)
                         .observe(BuscarFinActivity.this, new Observer<List<FinModal>>() {
                             @Override
                             public void onChanged(List<FinModal> finModals) {
-                                Intent intent = new Intent(BuscarFinActivity.this, ResultadoActivity.class);
-                                intent.putExtra("resultados", new ArrayList<>(finModals));
-                                startActivity(intent);
+                                if (finModals == null || finModals.isEmpty()) {
+                                    // Se não houver resultados, exibir uma mensagem de alerta
+                                    new AlertDialog.Builder(BuscarFinActivity.this)
+                                            .setTitle("Nenhum Resultado")
+                                            .setMessage("Nenhum resultado encontrado para a busca realizada.")
+                                            .setPositiveButton("OK", null)
+                                            .show();
+                                } else {
+                                    // Se houver resultados, abrir a próxima atividade
+                                    Intent intent = new Intent(BuscarFinActivity.this, ResultadoBuscaActivity.class);
+                                    intent.putExtra("resultados", new ArrayList<>(finModals));
+                                    startActivity(intent);
+                                }
+                                // Remover o observador após a primeira chamada
+                                dao.buscaDesp(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp)
+                                        .removeObserver(this);
                             }
                         });
             }

@@ -61,8 +61,7 @@ public class NewFinActivity extends AppCompatActivity {
             despDescrEdt.setText(intent.getStringExtra(EXTRA_DESCR_DESP));
             dataDespEdt.setText(intent.getStringExtra(EXTRA_DURATION));
         }
-        //configurando um ouvinte de clique para o botão FinBtnSave. Quando o botão é clicado,
-        // o código dentro do método onClick() é executado.
+
         FinBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +81,6 @@ public class NewFinActivity extends AppCompatActivity {
                 saveFin(valorDesp, tipoDesp, fontDesp, despDescr, dataDesp);
             }
         });
-
 
         FinBtnConsult.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +102,7 @@ public class NewFinActivity extends AppCompatActivity {
                     if (backupSuccess) {
                         Toast.makeText(NewFinActivity.this, "Backup do banco de dados concluído com sucesso.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(NewFinActivity.this, "Falha ao realizar o backup do banco de dados.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewFinActivity.this, "Falha ao realizar backup do banco de dados.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

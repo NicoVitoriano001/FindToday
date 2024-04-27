@@ -40,7 +40,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //below line is use to inflate our layout file for each item of our recycler view.
         View item = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fin_rv_item, parent, false);
+                .inflate(R.layout.item_fin_rv, parent, false);
         return new ViewHolder(item);
     }
 

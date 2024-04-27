@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".NewFinActivity">
-
 
     <EditText
         android:id="@+id/idEdtValorDesp"
@@ -16,7 +14,6 @@
         android:layout_margin="10dp"
         android:hint="Valor Desp" />
 
-    <!--edit text for our course name-->
     <EditText
         android:id="@+id/idEdtTipoDesp"
         android:layout_width="match_parent"
@@ -35,9 +32,8 @@
         android:hint="Fonte Paga"
         android:inputType="textCapCharacters"
         android:imeOptions="actionNext"
-        android:singleLine="true" />/>
+        android:singleLine="true" />
 
-    <!--edit text for our course description-->
     <EditText
         android:id="@+id/idEdtDespDescr"
         android:layout_width="match_parent"
@@ -48,7 +44,6 @@
         android:imeOptions="actionNext"
         android:singleLine="true" />
 
-    <!--edit text for course description-->
     <EditText
         android:id="@+id/idEdtDataDesp"
         android:layout_width="match_parent"
@@ -58,7 +53,6 @@
         android:inputType="datetime"
         android:imeOptions="actionDone" />
 
-    <!--button for saving data to room database-->
     <Button
         android:id="@+id/idBtnSaveDesp"
         android:layout_width="match_parent"
@@ -85,6 +79,5 @@
         android:padding="5dp"
         android:text="Realizar bkp"
         android:textAllCaps="false" />
-
 
 </LinearLayout>
