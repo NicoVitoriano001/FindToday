@@ -7,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
 
+
+
 @androidx.room.Dao
 public interface Dao {
     @Insert
@@ -21,20 +23,19 @@ public interface Dao {
     @Query("DELETE FROM fin_table")
     void deleteallDesp();
 
+
     @Query("SELECT * FROM fin_table WHERE dataDesp LIKE '%2024%' ORDER BY dataDesp DESC, tipoDesp ASC")
     LiveData<List<FinModal>> getallDesp();
-
     /*
-    @Query("SELECT * FROM fin_table ORDER BY dataDesp DESC, tipoDesp ASC")
-    LiveData<List<FinModal>> getallDesp();
-    */
+       @Query("SELECT * FROM fin_table ORDER BY dataDesp DESC, tipoDesp ASC")
+       LiveData<List<FinModal>> getallDesp();
+       */
     @Query("SELECT * FROM fin_table WHERE valorDesp LIKE '%' || :valorDesp || '%' " +
             "AND tipoDesp LIKE '%' || :tipoDesp || '%' " +
             "AND fontDesp LIKE '%' || :fontDesp || '%' " +
             "AND despDescr LIKE '%' || :despDescr || '%' " +
             "AND dataDesp LIKE '%' || :dataDesp || '%' ORDER BY dataDesp DESC")
     LiveData<List<FinModal>> buscaDesp(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp);
-
     /*
     @Query("SELECT tipoDesp, ROUND(SUM(CAST(valorDesp AS REAL)), 2) AS totalValorDesp " +
             "FROM fin_table " +
@@ -43,11 +44,6 @@ public interface Dao {
             "GROUP BY tipoDesp")
     LiveData<List<FinModal>> buscaResult(String ano, String mes);
 */
-
     @Query("SELECT * FROM fin_table WHERE SUBSTR(dataDesp, 1, 4) = :ano AND SUBSTR(dataDesp, 6, 2) = :mes")
     LiveData<List<FinModal>> buscaPorAnoEMes(String ano, String mes);
-
-
-
-
 }

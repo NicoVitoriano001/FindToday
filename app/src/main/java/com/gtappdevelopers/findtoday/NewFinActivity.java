@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import androidx.core.app.ActivityCompat;
 
-
 public class NewFinActivity extends AppCompatActivity {
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
     private Button FinBtnSave;
@@ -35,6 +34,7 @@ public class NewFinActivity extends AppCompatActivity {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dataHoraAtual.format(formatter);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +107,6 @@ public class NewFinActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void saveFin(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
@@ -144,6 +143,5 @@ public class NewFinActivity extends AppCompatActivity {
             }
         }
     }
-
 
 }
