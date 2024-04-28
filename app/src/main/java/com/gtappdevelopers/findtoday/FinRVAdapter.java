@@ -28,10 +28,10 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
             //below line is to check the fin name, description and fin data.
             return
                     oldItem.getValorDesp().equals(newItem.getValorDesp()) &&
-                    oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
-                    oldItem.getFontDesp().equals(newItem.getFontDesp()) &&
-                    oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
-                    oldItem.getDataDesp().equals(newItem.getDataDesp());
+                            oldItem.getTipoDesp().equals(newItem.getTipoDesp()) &&
+                            oldItem.getFontDesp().equals(newItem.getFontDesp()) &&
+                            oldItem.getDespDescr().equals(newItem.getDespDescr()) &&
+                            oldItem.getDataDesp().equals(newItem.getDataDesp());
         }
     };
 

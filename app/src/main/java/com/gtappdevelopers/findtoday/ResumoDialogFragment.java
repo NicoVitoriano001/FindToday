@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 
 public class ResumoDialogFragment extends DialogFragment {
     private final LiveData<List<FinModal>> data;
-
     public ResumoDialogFragment(LiveData<List<FinModal>> data) {
         this.data = data;
     }

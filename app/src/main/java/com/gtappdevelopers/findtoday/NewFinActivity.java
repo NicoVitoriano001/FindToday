@@ -15,12 +15,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import androidx.core.app.ActivityCompat;
 
-
 public class NewFinActivity extends AppCompatActivity {
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
     private Button FinBtnSave;
     private Button FinBtnConsult;
-    //creating a constant string variable for our course name, description and duration.
     public static final String EXTRA_ID = "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID";
     public static final String EXTRA_VALOR_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_VALOR_DESP";
     public static final String EXTRA_TIPO_DESP = "com.gtappdevelopers.gfgroomdatabase.EXTRA_TIPO_DESP";
@@ -29,12 +27,13 @@ public class NewFinActivity extends AppCompatActivity {
     public static final String EXTRA_DURATION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_DURATION";
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
-
     public String getDataHoraAtual() {
         LocalDateTime dataHoraAtual = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dataHoraAtual.format(formatter);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +106,6 @@ public class NewFinActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void saveFin(String valorDesp, String tipoDesp, String fontDesp, String despDescr, String dataDesp) {
@@ -144,6 +142,5 @@ public class NewFinActivity extends AppCompatActivity {
             }
         }
     }
-
 
 }
