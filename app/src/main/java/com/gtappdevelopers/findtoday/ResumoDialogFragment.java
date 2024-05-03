@@ -20,7 +20,6 @@ public class ResumoDialogFragment extends DialogFragment {
     private String option;
     private String ano;
     private String mes;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,6 +69,5 @@ public class ResumoDialogFragment extends DialogFragment {
             getDialog().getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     }
-
 
 }
