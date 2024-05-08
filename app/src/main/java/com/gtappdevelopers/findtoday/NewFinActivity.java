@@ -14,6 +14,8 @@ import android.widget.Toast;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import androidx.core.app.ActivityCompat;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class NewFinActivity extends AppCompatActivity {
     private EditText valorDespEdt, tipoDespEdt, fontDespEdt, despDescrEdt, dataDespEdt;
@@ -28,8 +30,9 @@ public class NewFinActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
 
     public String getDataHoraAtual() {
+        Locale locale = new Locale("pt", "BR");
         LocalDateTime dataHoraAtual = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd", locale);
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dataHoraAtual.format(formatter);
     }
