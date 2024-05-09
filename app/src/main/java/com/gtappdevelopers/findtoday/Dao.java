@@ -25,12 +25,12 @@ public interface Dao {
 
     @Query("SELECT * FROM fin_table WHERE dataDesp LIKE '%2024%' ORDER BY " +
             "CASE SUBSTR(dataDesp, 1, 3) " +
-            "   WHEN 'Dom' THEN 1 " +
-            "   WHEN 'Seg' THEN 2 " +
-            "   WHEN 'Ter' THEN 3 " +
-            "   WHEN 'Qua' THEN 4 " +
-            "   WHEN 'Qui' THEN 5 " +
-            "   WHEN 'Sex' THEN 6 " +
+            "   WHEN 'Sun' THEN 1 " +
+            "   WHEN 'Mon' THEN 2 " +
+            "   WHEN 'Tue' THEN 3 " +
+            "   WHEN 'Wed' THEN 4 " +
+            "   WHEN 'Thu' THEN 5 " +
+            "   WHEN 'Fri' THEN 6 " +
             "   ELSE 7 " +
             "END ASC, " +
             "SUBSTR(dataDesp, 6) DESC, tipoDesp ASC")
