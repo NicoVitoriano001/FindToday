@@ -2,8 +2,10 @@ package com.gtappdevelopers.findtoday;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -14,6 +16,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,13 +25,23 @@ public class MainActivity extends AppCompatActivity {
     private static final int ADD_DESP_REQUEST = 1;
     public static final int EDIT_DESP_REQUEST = 2;
     private static final int SEARCH_DESP_REQUEST = 3;
-    private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Configuração do ActionBarDrawerToggle
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Configurando o botão de ação flutuante para adicionar
         FloatingActionButton fab = findViewById(R.id.idFABAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Configurando o segundo botão de ação flutuante para buscar
         FloatingActionButton fab2 = findViewById(R.id.idFABAdd2);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Configurando o RecyclerView
         RecyclerView FinRV = findViewById(R.id.idRVFin);
         FinRV.setLayoutManager(new LinearLayoutManager(this));
         FinRV.setHasFixedSize(true);
@@ -53,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         FinRV.setAdapter(adapter);
         viewmodal = new ViewModelProvider(this).get(ViewModal.class);
 
+        // Observando os dados do ViewModel
         viewmodal.getallDesp().observe(this, new Observer<List<FinModal>>() {
             @Override
             public void onChanged(List<FinModal> models) {
@@ -60,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-// CONFIRMA EXCLUSAO
+        // CONFIRMA EXCLUSÃO
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -86,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         }).attachToRecyclerView(FinRV);
-//FIM CONFIRMA EXCLUSAO
+        // FIM CONFIRMA EXCLUSÃO
+
+        // Configurando o listener de clique no item do RecyclerView
         adapter.setOnItemClickListener(new FinRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(FinModal model) {
@@ -100,12 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_DESP_REQUEST);
             }
         });
-
-
-
-
-
-    }
+    } // fim onCreate
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -144,7 +158,16 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
         }
-
     }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
 }

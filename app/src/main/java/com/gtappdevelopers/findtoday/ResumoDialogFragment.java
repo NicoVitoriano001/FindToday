@@ -4,70 +4,65 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.LiveData;
+import java.util.ArrayList;
 import java.util.List;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class ResumoDialogFragment extends DialogFragment {
-    private final LiveData<List<FinModal>> data;
-    public ResumoDialogFragment(LiveData<List<FinModal>> data) {
-        this.data = data;
+    private List<FinModal> data;
+
+    public static ResumoDialogFragment newInstance(List<FinModal> data) {
+        ResumoDialogFragment fragment = new ResumoDialogFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("data", new ArrayList<>(data));
+        fragment.setArguments(args);
+        return fragment;
     }
-    private Dao dao;
-    private String option;
-    private String ano;
-    private String mes;
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflar o layout do DialogFragment
-        View view = inflater.inflate(R.layout.dialog_fragment_layout, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_result_resumo, container, false);
 
-        // Criar um novo ViewGroup para atuar como contêiner dos itens da lista
-        ViewGroup itemListContainer = view.findViewById(R.id.item_list_container);
+        if (getArguments() != null) {
+            data = (List<FinModal>) getArguments().getSerializable("data");
+        }
 
-        // Use o LiveData passado para o construtor
-        data.observe(getViewLifecycleOwner(), finModals -> {
-            // Atualize a interface com os dados
-            if (finModals != null && !finModals.isEmpty()) {
-                for (FinModal result : finModals) {
-                    // Inflar o layout do item da lista
-                    View itemView = inflater.inflate(R.layout.item_list_layout_fragment, itemListContainer, false);
+        TableLayout tableLayout = view.findViewById(R.id.resultadosTable);
 
-                    // Encontrar os TextViews dentro do itemView
-                    TextView valorDespTextView = itemView.findViewById(R.id.valorDespTextView);
-                    TextView tipoDespTextView = itemView.findViewById(R.id.tipoDespTextView);
-                    TextView fontDespTextView = itemView.findViewById(R.id.fontDespTextView);
-                    TextView despDescrTextView = itemView.findViewById(R.id.despDescrTextView);
-                    TextView dataDespTextView = itemView.findViewById(R.id.dataDespTextView);
+        if (data != null && !data.isEmpty()) {
+            for (FinModal item : data) {
+                TableRow row = new TableRow(getContext());
+                row.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
 
-                    // Definir os valores nos TextViews
-                    valorDespTextView.setText(String.valueOf(result.getValorDesp()));
-                    tipoDespTextView.setText(result.getTipoDesp());
-                    fontDespTextView.setText(result.getFontDesp());
-                    despDescrTextView.setText(result.getDespDescr());
-                    dataDespTextView.setText(result.getDataDesp());
+                addTextViewToRow(row, item.getDataDesp(), 8);
+                addTextViewToRow(row, item.getDespDescr(), 8);
+                addTextViewToRow(row, item.getValorDesp(), 8);
+                addTextViewToRow(row, item.getTipoDesp(), 8);
+                addTextViewToRow(row, item.getFontDesp(), 8);
 
-                    // Adicionar o itemView ao contêiner
-                    itemListContainer.addView(itemView);
-                }
+                tableLayout.addView(row);
             }
-        });
+        }
+
+        Button closeButton = view.findViewById(R.id.closeButton);
+        closeButton.setOnClickListener(v -> dismiss());
 
         return view;
     }
 
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (getDialog() != null && getDialog().getWindow() != null) {
-            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.99);
-            getDialog().getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
+    private void addTextViewToRow(TableRow row, String text, int padding) {
+        TextView textView = new TextView(getContext());
+        textView.setText(text);
+        textView.setPadding(padding, padding, padding, padding);
+        textView.setSingleLine(true);
+        row.addView(textView);
     }
-
 }

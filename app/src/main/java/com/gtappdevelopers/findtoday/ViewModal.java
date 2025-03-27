@@ -4,45 +4,50 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
 public class ViewModal extends AndroidViewModel {
-    //creating a new variable for course repository.
-    private FinRepository repository;
-    //below line is to create a variable for live data where all the courses are present.
-    private LiveData<List<FinModal>> allDesp;
 
-    //constructor for our view modal.
+    // Variável para o repositório
+    private final FinRepository repository;
+
+    // Variável para armazenar todas as despesas
+    private final LiveData<List<FinModal>> allDesp;
+
+    // Construtor do ViewModel
     public ViewModal(@NonNull Application application) {
         super(application);
         repository = new FinRepository(application);
         allDesp = repository.getallDesp();
     }
 
-
-    //below method is use to insert the data to our repository.
+    // Método para inserir uma nova despesa
     public void insert(FinModal model) {
         repository.insert(model);
     }
 
-    //below line is to update data in our repository.
+    // Método para atualizar uma despesa existente
     public void update(FinModal model) {
         repository.update(model);
     }
 
-    //below line is to delete the data in our repository.
+    // Método para deletar uma despesa específica
     public void delete(FinModal model) {
         repository.delete(model);
     }
 
-    //below method is to delete all the courses in our list.
+    // Método para deletar todas as despesas
     public void deleteallDesp() {
         repository.deleteallDesp();
     }
 
-    //below method is to get all the courses in our list.
+    // Método para obter todas as despesas
     public LiveData<List<FinModal>> getallDesp() {
         return allDesp;
+    }
+
+    // Método adicional para buscar despesas por ano e mês
+    public LiveData<List<FinModal>> getDespesasPorAnoEMes(String ano, String mes) {
+        return repository.getDespesasPorAnoEMes(ano, mes);
     }
 }

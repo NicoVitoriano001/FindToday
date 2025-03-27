@@ -14,25 +14,17 @@
         android:layout_margin="10dp"
         android:hint="Valor Desp" />
 
-    <EditText
+    <Spinner
         android:id="@+id/idEdtTipoDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Tipo Desp"
-        android:inputType="textCapCharacters"
-        android:imeOptions="actionNext"
-        android:singleLine="true" />
+        android:layout_margin="10dp" />
 
-    <EditText
+    <Spinner
         android:id="@+id/idEdtFontDesp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Fonte Paga"
-        android:inputType="textCapCharacters"
-        android:imeOptions="actionNext"
-        android:singleLine="true" />
+        android:layout_margin="10dp" />
 
     <EditText
         android:id="@+id/idEdtDespDescr"
