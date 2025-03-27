@@ -6,13 +6,19 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def newName = "${variant.name}-${variant.versionName}.apk" // Define o novo nome do APK
+            output.outputFileName = newName // Atribui o novo nome ao APK
+        }
+    }
+
     defaultConfig {
         applicationId "com.gtappdevelopers.findtoday"
         minSdk 26
         targetSdk 28
         versionCode 1
-        versionName '2.3'
-
+        versionName "0.1.3.1.1" // Defina a versão aqui
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,13 +30,11 @@ android {
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.gtappdevelopers.findtoday'
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -41,4 +45,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+
 }

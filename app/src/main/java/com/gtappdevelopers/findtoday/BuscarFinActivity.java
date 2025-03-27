@@ -71,16 +71,13 @@ public class BuscarFinActivity extends AppCompatActivity {
             }
         });
 
-
         FloatingActionButton fabvoltardaBusca = findViewById(R.id.idFABvoltardaBusca);
         fabvoltardaBusca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish(); // Encerra a atividade atual e retorna à atividade anterior
             }
-        });
-
-
+          }
+        );
     }
-
 }

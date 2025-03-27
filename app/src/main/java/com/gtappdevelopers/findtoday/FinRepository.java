@@ -1,107 +1,51 @@
 package com.gtappdevelopers.findtoday;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FinRepository {
-    private Dao dao;
-    private LiveData<List<FinModal>> allDesp;
+    private final Dao dao;
+    private final LiveData<List<FinModal>> allDesp;
+    private final ExecutorService executorService;
 
-    //creating a constructor for our variables and passing the variables to it.
+    // Construtor para inicializar variáveis
     public FinRepository(Application application) {
         FinDatabase database = FinDatabase.getInstance(application);
         dao = database.Dao();
         allDesp = dao.getallDesp();
+        executorService = Executors.newSingleThreadExecutor();
     }
 
-    //creating a method to insert the data to our database.
+    // Método para inserir dados no banco
     public void insert(FinModal model) {
-        new InsertFinAsyncTask(dao).execute(model);
+        executorService.execute(() -> dao.insert(model));
     }
 
-    //creating a method to update data in database.
+    // Método para atualizar dados no banco
     public void update(FinModal model) {
-        new UpdateFinAsyncTask(dao).execute(model);
+        executorService.execute(() -> dao.update(model));
     }
 
-    //creating a method to delete the data in our database.
+    // Método para deletar um item específico
     public void delete(FinModal model) {
-        new DeleteFinAsyncTask(dao).execute(model);
+        executorService.execute(() -> dao.delete(model));
     }
 
-    //below is the method to delete all the courses.
+    // Método para deletar todos os itens
     public void deleteallDesp() {
-        new DeleteallDespAsyncTask(dao).execute();
+        executorService.execute(dao::deleteallDesp);
     }
 
-    //below method is to read all the courses.
+    // Método para obter todos os itens como LiveData
     public LiveData<List<FinModal>> getallDesp() {
         return allDesp;
     }
 
-    //we are creating a async task method to insert new dados.
-    private static class InsertFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
-        private Dao dao;
-
-        private InsertFinAsyncTask(Dao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(FinModal... model) {
-            //below line is use to insert our modal in dao.
-            dao.insert(model[0]);
-            return null;
-        }
-    }
-
-    //we are creating a async task method to update our dados.
-    private static class UpdateFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
-        private Dao dao;
-
-        private UpdateFinAsyncTask(Dao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(FinModal... models) {
-            //below line is use to update our modal in dao.
-            dao.update(models[0]);
-            return null;
-        }
-    }
-
-    //we are creating a async task method to delete dados.
-    private static class DeleteFinAsyncTask extends AsyncTask<FinModal, Void, Void> {
-        private Dao dao;
-
-        private DeleteFinAsyncTask(Dao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(FinModal... models) {
-            //below line is use to delete our course modal in dao.
-            dao.delete(models[0]);
-            return null;
-        }
-    }
-
-    //we are creating a async task method to delete all dados.
-    private static class DeleteallDespAsyncTask extends AsyncTask<Void, Void, Void> {
-        private Dao dao;
-
-        private DeleteallDespAsyncTask(Dao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            //on below line calling method to delete all dados.
-            dao.deleteallDesp();
-            return null;
-        }
+    // Método para buscar despesas por ano e mês
+    public LiveData<List<FinModal>> getDespesasPorAnoEMes(String ano, String mes) {
+        return dao.buscaPorAnoEMes(ano, mes);
     }
 }

@@ -1,42 +1,91 @@
 package com.gtappdevelopers.findtoday;
 
-import android.widget.EditText;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import java.util.List;
 
 public class ResumoDespActivity extends AppCompatActivity {
     private FinDatabase finDatabase;
-    private String[] options = {"Selecione", "valorDesp", "tipoDesp", "fontDesp", "despDescr", "dataDesp"};
+    private EditText anoEditText;  // Declaração adicionada
+    private EditText mesEditText;  // Declaração adicionada
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_desp);
 
+        // Inicializa o banco de dados
         finDatabase = FinDatabase.getInstance(getApplicationContext());
 
+        // Inicializa as views (correção dos erros "Cannot resolve symbol")
+        anoEditText = findViewById(R.id.idEdtAno);
+        mesEditText = findViewById(R.id.idEdtMes);
         Button resumoButton = findViewById(R.id.idBtnFazerResumo);
-        resumoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dao dao = finDatabase.Dao();
-                String ano = ((EditText) findViewById(R.id.idEdtAno)).getText().toString();
-                String mes = ((EditText) findViewById(R.id.idEdtMes)).getText().toString();
 
-                // Usa SUBSTR para extrair ano e mês da data
-                LiveData<List<FinModal>> dados = dao.buscaPorAnoEMes(ano, mes);
+        resumoButton.setOnClickListener(v -> {
+            try {
+                String ano = anoEditText.getText().toString().trim();
+                String mes = mesEditText.getText().toString().trim();
 
-                // Cria e exibe o DialogFragment com os dados buscados
-                DialogFragment dialogFragment = new ResumoDialogFragment(dados);
-                dialogFragment.show(getSupportFragmentManager(), "ResultDialogFragment");
+                // Cópia modificável para uso no Observer
+                final String mesFinal = mes.length() == 1 ? "0" + mes : mes;
+
+                if (ano.isEmpty() || mesFinal.isEmpty()) {
+                    showToast("Preencha ano e mês!");
+                    return;
+                }
+
+                finDatabase.Dao().buscaPorAnoEMes(ano, mesFinal)
+                        .observe(this, finModals -> {
+                            if (isFinishing() || isDestroyed()) return;
+
+                            if (finModals != null && !finModals.isEmpty()) {
+                                showResultDialog(finModals);
+                            } else {
+                                showToast("Nenhum dado encontrado para " + mesFinal + "/" + ano);
+                            }
+                        });
+
+            } catch (Exception e) {
+                Log.e("ResumoDesp", "Erro na busca", e);
+                showToast("Erro na busca: " + e.getMessage());
             }
         });
-    }
 
     }
+
+    // Adicionando o método showToast que estava faltando
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    // Adicionando o método showResultDialog que estava faltando
+    private void showResultDialog(List<FinModal> dados) {
+        try {
+            if (dados == null || dados.isEmpty()) {
+                showToast("Nenhuma despesa encontrada para o período");
+                return;
+            }
+
+            ResumoDialogFragment dialog = ResumoDialogFragment.newInstance(dados);
+
+            // Configuração para ocupar a maior parte da tela
+            dialog.setStyle(DialogFragment.STYLE_NORMAL, R.style.AppDialogTheme);
+
+            dialog.show(getSupportFragmentManager(), "ResultadosDespesasDialog");
+
+        } catch (Exception e) {
+            Log.e("ResumoDesp", "Erro ao mostrar diálogo", e);
+            showToast("Erro ao exibir resultados: " + e.getMessage());
+        }
+    }
+}

@@ -5,6 +5,8 @@ import androidx.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Locale;
+
 @Entity(tableName = "fin_table")
 
 public class FinModal implements Parcelable {
@@ -29,29 +31,24 @@ public class FinModal implements Parcelable {
         return id;
     }
     public void setId(int id) { this.id = id; }
-
     public String getValorDesp() {return valorDesp; }
     public void setValorDesp(String valorDesp) {
         this.valorDesp = valorDesp;
     }
-
     public String getTipoDesp() {
         return tipoDesp;
     }
     public void setTipoDesp(String tipoDesp) {
         this.tipoDesp = tipoDesp;
     }
-
     public String getFontDesp() {
         return fontDesp;
     }
     public void setFontDesp(String fontDesp) {
         this.fontDesp = fontDesp;
     }
-
     public String getDespDescr() { return despDescr; }
     public void setDespDescr(String despDescr) { this.despDescr = despDescr; }
-
     public String getDataDesp() {
         return dataDesp;
     }
@@ -93,6 +90,13 @@ public class FinModal implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(Locale.getDefault(),
+                "Data: %s\nDescrição: %s\nValor: %s\nTipo: %s\nFonte: %s",
+                dataDesp, despDescr, valorDesp, tipoDesp, fontDesp);
     }
 
 }

@@ -55,7 +55,7 @@ public class FinRVAdapter extends ListAdapter<FinModal, FinRVAdapter.ViewHolder>
         holder.dataDespTV.setText(model.getDataDesp());
 
         if ("CRED".equalsIgnoreCase(model.getTipoDesp())) {
-            holder.valorDespTV.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.blue_200));
+            holder.valorDespTV.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green_200));
             holder.valorDespTV.setTypeface(null, Typeface.BOLD);
 
         }

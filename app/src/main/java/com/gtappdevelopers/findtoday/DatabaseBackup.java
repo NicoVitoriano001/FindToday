@@ -7,12 +7,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class DatabaseBackup {
 
+    public static String getDataHoraAtual() {
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+        return dataHoraAtual.format(formatter);
+    }
+
     public static boolean backupDatabase(Context context) {
         File src = context.getDatabasePath("fin_database.db");
-        File dst = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fin_database_.db");
+        String dataHora = getDataHoraAtual();
+        String nomeArquivoBKP = "fin_database_" + dataHora + ".db";
+        File dst = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivoBKP);
 
         try {
             FileInputStream inputStream = new FileInputStream(src);
